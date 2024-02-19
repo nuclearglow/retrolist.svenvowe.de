@@ -1,0 +1,31 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug Server",
+			"request": "launch",
+			"runtimeArgs": ["run-script", "dev", "--", "--port", "5175", "--host"],
+			"runtimeExecutable": "npm",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "node",
+			"console": "integratedTerminal"
+		},
+		{
+			"name": "Debug Brave",
+			"type": "chrome",
+			"request": "launch",
+			"runtimeExecutable": "/usr/bin/brave-browser",
+			"osx": {
+				"runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+			},
+			"url": "http://localhost:5175",
+			"webRoot": "${workspaceFolder}"
+		}
+	],
+	"compounds": [
+		{
+			"name": "Debug",
+			"configurations": ["Debug Server", "Debug Brave"]
+		}
+	]
+}

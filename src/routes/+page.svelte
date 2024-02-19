@@ -1,2 +1,10 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { getContext } from 'svelte';
+
+	// Retrieve list store from context
+	const lists = getContext('lists');
+</script>
+
+{#each $lists as list}
+	<p>{list.title} {list.subtitle}</p>
+{/each}
