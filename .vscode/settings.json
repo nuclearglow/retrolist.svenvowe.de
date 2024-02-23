@@ -1,5 +1,22 @@
 {
 	"eslint.enable": true,
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"cSpell.ignorePaths": ["**/*.md"]
+	"cSpell.ignorePaths": ["**/*.md"],
+	"sqltools.connections": [
+		{
+			"mysqlOptions": {
+				"authProtocol": "default",
+				"enableSsl": "Disabled"
+			},
+			"previewLimit": 50,
+			"server": "localhost",
+			"port": 3306,
+			"driver": "MariaDB",
+			"name": "retrolist-localhost",
+			"group": "localhost",
+			"database": "retrolist",
+			"username": "retrolist",
+			"askForPassword": true
+		}
+	]
 }

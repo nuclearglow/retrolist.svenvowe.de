@@ -36,3 +36,13 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Set up backend
+
+follow the [MariaDB installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-22-04)
+
+```shell
+sudo apt update
+sudo apt install mariadb-server
+sudo mysql_secure_installation
+```
