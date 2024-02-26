@@ -1,16 +1,15 @@
 <script>
-	import { getContext } from 'svelte';
-
-	// Retrieve list store from context
-	const lists = getContext('lists');
+	export let data;
 </script>
 
 <nav>
 	<ul></ul>
 </nav>
-{#each $lists as list (list.id)}
+{#each data.lists as list (list.id)}
 	<li>
-		<p>{list.title} {list.subtitle}</p>
+		<a href="/list/{list.id}/">
+			<p>{list.title} {list.subtitle}</p>
+		</a>
 	</li>
 {:else}
 	TODO: register or login

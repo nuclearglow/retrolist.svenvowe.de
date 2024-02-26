@@ -6,21 +6,9 @@
 	import 'open-props/normalize';
 	import 'open-props/style';
 
-	import type { RetroList } from '$lib/types';
-
-	import { setContext } from 'svelte';
-	import { writable } from 'svelte/store';
-
 	import '../styles/_reset.css';
 	import '../styles/animations.css';
 	import '../styles/app.css';
-
-	export let data;
-
-	// Create a store, update when necessary and add it to the context for child components to access
-	const lists = writable<RetroList[]>();
-	$: lists.set(data.lists);
-	setContext('lists', lists);
 </script>
 
 <div class="layout">
