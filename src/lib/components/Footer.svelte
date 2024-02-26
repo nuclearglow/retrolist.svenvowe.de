@@ -1,7 +1,11 @@
+<script>
+	import BackButton from './BackButton.svelte';
+</script>
+
 <footer>
 	<div class="left">
 		Left
-		<!-- TODO: back button-->
+		<BackButton />
 		<!-- TODO: profile-->
 		<!-- TODO: imprint-->
 	</div>

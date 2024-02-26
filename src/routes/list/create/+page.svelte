@@ -22,5 +22,5 @@
 		<label for="subtitle">Subtitle</label>
 		<input required type="text" id="subtitle" name="subtitle" value={form?.subtitle ?? ''} />
 	</div>
-	<button class="btn btn-primary" type="submit">Create</button>
+	<button type="submit">Create</button>
 </form>

@@ -17,12 +17,12 @@
 			<Message message={'You have no lists yet'}></Message>
 		{/each}
 	</ul>
-</nav>
 
-<a href="/list/create/">
-	<PlusCircleIcon class="icon" size="24" />
-	<p>Create new RetroList...</p>
-</a>
+	<a href="/list/create/">
+		<PlusCircleIcon class="icon" size="24" />
+		<p>Create new RetroList...</p>
+	</a>
+</nav>
 
 <style lang="scss">
 	li {
