@@ -9,6 +9,7 @@
 	import '../styles/_reset.css';
 	import '../styles/animations.css';
 	import '../styles/app.scss';
+	import '../styles/terminal.css';
 </script>
 
 <div class="layout">

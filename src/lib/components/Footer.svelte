@@ -1,17 +1,20 @@
 <script>
+	import { page } from '$app/stores';
 	import BackButton from './BackButton.svelte';
+
+	$: listId = $page.url.pathname.match(/\/list\/(\d+)/)?.[1];
 </script>
 
 <footer>
 	<div class="left">
-		Left
 		<BackButton />
 		<!-- TODO: profile-->
 		<!-- TODO: imprint-->
 	</div>
 	<div class="right">
-		Right
-		<!-- TODO: back button-->
+		{#if listId}
+			TODO: add item @see: src/components/ItemCreate.tsx
+		{/if}
 	</div>
 </footer>
 

@@ -16,11 +16,26 @@
 
 	<div class="form-group">
 		<label for="title">Title</label>
-		<input required type="text" id="title" name="title" value={form?.title ?? ''} />
+		<input
+			required
+			autocomplete="off"
+			type="text"
+			id="title"
+			name="title"
+			value={form?.title ?? ''}
+		/>
 	</div>
 	<div class="form-group">
 		<label for="subtitle">Subtitle</label>
-		<input required type="text" id="subtitle" name="subtitle" value={form?.subtitle ?? ''} />
+		<input
+			required
+			autocomplete="off"
+			type="text"
+			id="subtitle"
+			name="subtitle"
+			value={form?.subtitle ?? ''}
+		/>
 	</div>
-	<button type="submit">Create</button>
+
+	<button class="btn btn-primary btn-ghost" type="submit">Create</button>
 </form>
