@@ -1,3 +1,15 @@
+@keyframes loading {
+	from {
+		background-position: 0 0;
+		/* rotate: 0; */
+	}
+
+	to {
+		background-position: 100% 100%;
+		/* rotate: 360deg; */
+	}
+}
+
 @keyframes chrome-effect {
 	0% {
 		background-position: calc(var(--global-scale-factor) * -340px) 0;

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
+	import Item from '$lib/components/Item.svelte';
+	import Message from '$lib/components/Message.svelte';
 
 	export let data;
 
@@ -16,10 +17,9 @@
 
 		<div class="items">
 			{#each data.list.items as item (item.uuid)}
-				<p>{item.title}</p>
-				<!-- TODO: single items and edit items here-->
+				<Item {item} />
 			{:else}
-				<ErrorMessage error={'No items'}></ErrorMessage>
+				<Message message={'No items yet'}></Message>
 			{/each}
 		</div>
 	{:else}

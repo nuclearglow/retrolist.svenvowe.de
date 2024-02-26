@@ -7,7 +7,7 @@ async function main() {
 
 	await Promise.all(
 		[1, 2, 3].map(async (index) => {
-			const list = await prisma.lists.create({
+			const list = await prisma.list.create({
 				data: {
 					title: `List`,
 					subtitle: `${index}`,

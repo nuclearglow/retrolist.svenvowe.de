@@ -8,7 +8,7 @@
 
 	import '../styles/_reset.css';
 	import '../styles/animations.css';
-	import '../styles/app.css';
+	import '../styles/app.scss';
 </script>
 
 <div class="layout">

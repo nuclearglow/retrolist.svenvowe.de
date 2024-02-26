@@ -7,21 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model items {
+model Item {
   id        Int     @id @default(autoincrement()) @db.MediumInt
   uuid      String  @unique(map: "items_unique") @db.VarChar(36)
   title     String  @db.VarChar(100)
   quantity  Int?    @default(1)
   done      Boolean @default(false)
   list_uuid String  @db.VarChar(36)
-  lists     lists   @relation(fields: [list_uuid], references: [uuid], onUpdate: Restrict, map: "items_lists_FK")
+  lists     List   @relation(fields: [list_uuid], references: [uuid], onUpdate: Restrict, map: "items_lists_FK")
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
   @@index([list_uuid], map: "items_lists_FK")
 }
 
-model lists {
+model List {
   id       Int     @id @default(autoincrement()) @db.MediumInt
   uuid     String  @unique(map: "lists_unique") @db.VarChar(36)
   title    String  @db.VarChar(100)
@@ -29,5 +29,5 @@ model lists {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
-  items    items[]
+  items    Item[]
 }
