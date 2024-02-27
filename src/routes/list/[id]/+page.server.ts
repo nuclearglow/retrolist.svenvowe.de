@@ -4,7 +4,11 @@ import { fail } from '@sveltejs/kit';
 export const load = async ({ params }) => {
 	const list = await prisma.list.findUnique({
 		where: { id: Number(params.id) },
-		include: { items: true }
+		include: {
+			items: {
+				orderBy: [{ done: 'asc' }, { updatedAt: 'desc' }, { createdAt: 'desc' }]
+			}
+		}
 	});
 
 	return { list };

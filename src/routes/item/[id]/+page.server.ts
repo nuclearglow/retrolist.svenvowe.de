@@ -21,7 +21,8 @@ export const actions = {
 			where: { id: Number(params.id) },
 			data: {
 				title,
-				quantity
+				quantity,
+				updatedAt: new Date()
 			}
 		});
 
@@ -31,6 +32,30 @@ export const actions = {
 	delete: async ({ params: { id } }) => {
 		await prisma.item.delete({
 			where: { id: Number(id) }
+		});
+
+		return { success: true };
+	},
+
+	toggleDone: async ({ request, params }) => {
+		const data = await request.formData();
+
+		const done = data.get('done');
+
+		// validation
+		if (done === null) {
+			return fail(400, { done, missing: true });
+		}
+		if (typeof done !== 'string' || !['true', 'false'].includes(done)) {
+			return fail(400, { incorrect: true });
+		}
+
+		await prisma.item.update({
+			where: { id: Number(params.id) },
+			data: {
+				done: done === 'true',
+				updatedAt: new Date()
+			}
 		});
 
 		return { success: true };
