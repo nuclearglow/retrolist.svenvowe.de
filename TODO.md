@@ -1,11 +1,12 @@
 # TODO
 
-- basic styles and components
-- set up prisma
-  - [shadow database](https://www.prisma.io/docs/orm/prisma-migrate/understanding-prisma-migrate/shadow-database)
-  - [data acess](https://www.prisma.io/blog/sveltekit-prisma-kvCOEoeQlC#-get-all-published-posts)
-  - `GRANT CREATE, DROP, ALTER *.* TO 'rerolist'@'localhost';`
-- backend endpoints and database connection for list and items
-- up-to-date sync handling when inserting (svelte)
-- user handling with lucia, see [example](https://github.com/principle105/sveltekit-lucia-prisma-oauth)
-- setting everything up and deploy
+- features:
+  - add item
+  - edit item
+  - delete item
+  - delete list
+- finalize styles and components
+
+- implement user handling with lucia (username+password), see [example](https://github.com/principle105/sveltekit-lucia-prisma-oauth), migrate everything
+- set up remote server and deployment
+- implement a script that interactively creates a new user --> for us
