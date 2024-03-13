@@ -11,7 +11,7 @@ model Item {
   id        Int     @id @default(autoincrement()) @db.MediumInt
   uuid      String  @unique(map: "items_unique") @db.VarChar(36)
   title     String  @db.VarChar(100)
-  quantity  Int?    @default(1)
+  quantity  Int    @default(1)
   done      Boolean @default(false)
   list_uuid String  @db.VarChar(36)
   lists     List   @relation(fields: [list_uuid], references: [uuid], onUpdate: Restrict, map: "items_lists_FK")

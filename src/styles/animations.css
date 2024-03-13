@@ -14,11 +14,11 @@
 	0% {
 		background-position: calc(var(--global-scale-factor) * -340px) 0;
 	}
-	10% {
-		background-position: calc(var(--global-scale-factor) * 340px) 0;
+	5% {
+		background-position: calc(var(--global-scale-factor) * 100px) 0;
 	}
 	100% {
-		background-position: calc(var(--global-scale-factor) * 340px) 0;
+		background-position: calc(var(--global-scale-factor) * 100px) 0;
 	}
 }
 

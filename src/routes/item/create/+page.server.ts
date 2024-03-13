@@ -23,17 +23,15 @@ export const actions = {
 			return fail(400, { incorrect: true });
 		}
 
-		const uuid = crypto.randomUUID();
-
 		await prisma.item.create({
 			data: {
-				uuid,
+				uuid: crypto.randomUUID(),
 				title,
 				quantity,
 				list_uuid: listUuid
 			}
 		});
 
-		return fail(500, { error: 'Error occurred creating item' });
+		return { success: true };
 	}
 };

@@ -7,9 +7,9 @@
 
 <nav>
 	<ul>
-		{#each data.lists as list (list.id)}
+		{#each data.lists as list (list.uuid)}
 			<li>
-				<a href="/list/{list.id}/">
+				<a href="/list/{list.uuid}/">
 					<p>{list.title} {list.subtitle}</p>
 				</a>
 			</li>

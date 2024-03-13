@@ -3,7 +3,7 @@ import { fail } from '@sveltejs/kit';
 
 export const load = async ({ params }) => {
 	const list = await prisma.list.findUnique({
-		where: { id: Number(params.id) },
+		where: { uuid: params.uuid },
 		include: {
 			items: {
 				orderBy: [{ done: 'asc' }, { updatedAt: 'desc' }, { createdAt: 'desc' }]
@@ -31,7 +31,7 @@ export const actions = {
 		}
 
 		await prisma.list.update({
-			where: { id: Number(params.id) },
+			where: { uuid: params.uuid },
 			data: {
 				title,
 				subtitle
@@ -41,9 +41,9 @@ export const actions = {
 		return { success: true };
 	},
 
-	delete: async ({ params: { id } }) => {
+	delete: async ({ params: { uuid } }) => {
 		await prisma.list.delete({
-			where: { id: Number(id) }
+			where: { uuid }
 		});
 
 		return { success: true };

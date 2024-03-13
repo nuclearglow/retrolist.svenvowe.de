@@ -18,7 +18,7 @@ export const actions = {
 		}
 
 		await prisma.item.update({
-			where: { id: Number(params.id) },
+			where: { uuid: params.uuid },
 			data: {
 				title,
 				quantity,
@@ -29,9 +29,9 @@ export const actions = {
 		return { success: true };
 	},
 
-	delete: async ({ params: { id } }) => {
+	delete: async ({ params: { uuid } }) => {
 		await prisma.item.delete({
-			where: { id: Number(id) }
+			where: { uuid }
 		});
 
 		return { success: true };
@@ -51,7 +51,7 @@ export const actions = {
 		}
 
 		await prisma.item.update({
-			where: { id: Number(params.id) },
+			where: { uuid: params.uuid },
 			data: {
 				done: done === 'true',
 				updatedAt: new Date()

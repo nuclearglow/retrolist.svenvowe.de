@@ -1,8 +1,12 @@
 <script>
 	import { page } from '$app/stores';
 	import BackButton from './BackButton.svelte';
+	import ItemCreate from './ItemCreate.svelte';
 
-	$: listId = $page.url.pathname.match(/\/list\/(\d+)/)?.[1];
+	$: listUuid =
+		$page.url.pathname.match(
+			/\/list\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/
+		)?.[1] ?? '';
 </script>
 
 <footer>
@@ -12,8 +16,8 @@
 		<!-- TODO: imprint-->
 	</div>
 	<div class="right">
-		{#if listId}
-			TODO: add item @see: src/components/ItemCreate.tsx
+		{#if listUuid}
+			<ItemCreate {listUuid} />
 		{/if}
 	</div>
 </footer>

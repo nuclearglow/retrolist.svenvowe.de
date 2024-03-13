@@ -8,7 +8,7 @@
 <header>
 	<a href="/">
 		<div class="wrapper">
-			<div class="title">
+			<div class="title" data-title={title}>
 				{title}
 				<div class="subtitle">{subtitle}</div>
 			</div>
@@ -45,9 +45,10 @@
 				-webkit-text-fill-color: transparent;
 				-webkit-text-stroke: 2px #f5f5f5;
 
-				font-size: calc(var(--global-scale-factor) * 100px);
 				font-family: 'Titillium Web', sans-serif;
-				font-style: italic;
+				font-size: calc(var(--global-scale-factor) * 100px);
+				font-weight: 900;
+				font-style: oblique;
 				line-height: 1;
 				padding-right: calc(var(--global-scale-factor) * 20px);
 
@@ -75,10 +76,10 @@
 
 					animation-name: chrome-effect;
 					-webkit-animation-name: chrome-effect;
-					animation-duration: calc(1 / var(--global-scale-factor) * 6s);
-					-webkit-animation-duration: calc(1 / var(--global-scale-factor) * 6s);
-					animation-delay: 2s;
-					-webkit-animation-delay: 2s;
+					animation-duration: 10s;
+					-webkit-animation-duration: 10s;
+					animation-delay: 10s;
+					-webkit-animation-delay: 10s;
 					animation-timing-function: linear;
 					-webkit-animation-timing-function: linear;
 					animation-iteration-count: infinite;
@@ -91,6 +92,7 @@
 					right: calc(var(--global-scale-factor) * -30px);
 
 					font-family: 'Mr Dafoe', cursive;
+					font-weight: 200;
 					font-size: calc(var(--global-scale-factor) * 80px);
 					text-transform: none;
 					&::first-letter {
