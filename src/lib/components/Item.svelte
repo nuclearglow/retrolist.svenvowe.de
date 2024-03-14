@@ -6,16 +6,14 @@
 
 	let editMode = false;
 
-	import '../../styles/item.scss';
+	import '../../styles/modules/item.scss';
 </script>
 
 <div class="item terminal-alert terminal-alert-primary" class:done={item.done}>
 	{#if !editMode}
 		<ItemToggleDone {item} />
 	{/if}
-	<div class="quantity">
-		<span class="quantity">{`${item.quantity}x `}</span>
-		<div>{item.title}</div>
-	</div>
+	<span class="quantity">{`${item.quantity}x `}</span>
+	<div>{item.title}</div>
 	<!-- TODO: Switch to Edit -->
 </div>

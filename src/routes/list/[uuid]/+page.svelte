@@ -19,8 +19,6 @@
 
 <section>
 	{#if data.list}
-		<h3>{data.list.title} {data.list.subtitle}</h3>
-
 		<div class="title">
 			<h3>I need {itemsNeeded} more thing{itemsNeeded > 1 ? 's' : ''}:</h3>
 		</div>
@@ -39,7 +37,7 @@
 
 <style lang="scss">
 	section {
-		padding: 0 10px;
+		padding: 0 var(--size-2);
 		height: 100%;
 
 		display: flex;
@@ -58,6 +56,10 @@
 			display: flex;
 			flex-direction: column;
 			align-content: flex-start;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
 		}
 	}
 </style>

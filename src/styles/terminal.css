@@ -788,9 +788,8 @@ select:-webkit-autofill:focus {
 
 .terminal-alert {
 	color: var(--font-color);
-	padding: 1em;
 	border: 1px solid var(--font-color);
-	margin: var(--global-space) 0;
+	margin: var(--size-2) 0;
 }
 
 .terminal-alert-error {

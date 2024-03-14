@@ -1,24 +1,21 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { transitionDelay, transitionDuration } from '$lib/config';
-	import { validateUUID } from '$lib/util';
 	import { fade } from 'svelte/transition';
 
 	let path: string;
-	$: path = $page.url.pathname;
+	let skipTransition: boolean;
 
-	const skipTransition = path?.startsWith('/list/') && validateUUID(path?.replace(/list/, ''));
+	$: {
+		path = $page.url.pathname;
+		skipTransition = path?.startsWith('/list/');
+	}
 </script>
 
-{#key path}
-	{#if !skipTransition}
-		<div
-			class="transition"
-			in:fade|local={{ delay: transitionDelay, duration: transitionDuration }}
-		>
-			<slot />
-		</div>
-	{:else}
+{#if skipTransition}
+	<slot />
+{:else}
+	<div class="transition" in:fade|local={{ delay: transitionDelay, duration: transitionDuration }}>
 		<slot />
-	{/if}
-{/key}
+	</div>
+{/if}

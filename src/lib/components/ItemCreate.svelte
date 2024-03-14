@@ -4,7 +4,7 @@
 	import { UploadIcon } from 'svelte-feather-icons';
 
 	import { getEmptyItem, validateUUID } from '$lib/util';
-	import '../../styles/item.scss';
+	import '../../styles/modules/item.scss';
 
 	let item = getEmptyItem();
 
