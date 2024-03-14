@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Item from '$lib/components/Item.svelte';
+	import ListProgress from '$lib/components/ListProgress.svelte';
 	import Message from '$lib/components/Message.svelte';
 	import { subtitle, title } from '$lib/config';
 	import { currentSubtitle, currentTitle } from '$lib/stores';
@@ -30,6 +31,8 @@
 				<Message message={'No items yet'}></Message>
 			{/each}
 		</div>
+
+		<ListProgress list={data.list} />
 	{:else}
 		<h3>Ready to go! What do you need?</h3>
 	{/if}
@@ -38,7 +41,7 @@
 <style lang="scss">
 	section {
 		padding: 0 var(--size-2);
-		height: 100%;
+		height: calc(100% - var(--progress-height-total));
 
 		display: flex;
 		flex-direction: column;

@@ -24,7 +24,7 @@
 
 <style lang="scss">
 	.layout {
-		height: 110vh;
+		height: 100vh;
 		/* grid container settings */
 		display: grid;
 		grid-template-columns: 1fr;
@@ -35,12 +35,11 @@
 	}
 
 	main {
-		max-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--footer-padding));
+		height: 75%;
 		grid-area: main;
 		overflow-x: hidden;
 		overflow-y: scroll;
 		margin: var(--size-4) var(--size-4) var(--footer-height) var(--size-4);
-		padding-bottom: calc(var(--footer-height) + var(--footer-padding) * 2);
 
 		&::-webkit-scrollbar {
 			display: none;

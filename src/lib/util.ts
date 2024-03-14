@@ -1,5 +1,6 @@
 import type { RetroList } from '$lib/types';
 import type { Item } from '@prisma/client';
+import { clamp, partition } from 'lodash-es';
 
 export const validateUUID = (uuid: string): boolean =>
 	!!uuid &&
@@ -14,12 +15,24 @@ export const getEmptyItem = (): Pick<Item, 'title' | 'quantity' | 'done'> => ({
 	done: false
 });
 
-export const getItemStats = (list: Partial<RetroList>) => {
-	const done = list?.items?.filter((item) => item.done)?.length ?? 0;
-	const left = list?.items?.length ?? 0 - done ?? 0;
+export const getListStats = (list: Partial<RetroList>) => {
+	const [itemsDone, itemsLeft] = partition(list?.items, (item) => item.done) ?? [];
+
+	const done = itemsDone.length;
+	const left = itemsLeft.length;
+
+	const quantityDone = itemsDone.reduce((acc, item) => acc + item.quantity, 0);
+	const quantityLeft = itemsLeft.reduce((acc, item) => acc + item.quantity, 0);
+	/**
+	 * percentage of quantity of items done
+	 */
+	const progress = clamp((quantityDone * 100) / (quantityLeft + quantityDone), 0, 100);
 
 	return {
 		done,
-		left
+		left,
+		quantityDone,
+		quantityLeft,
+		progress
 	};
 };

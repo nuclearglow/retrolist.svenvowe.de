@@ -43,9 +43,14 @@ html {
 	--primary-color: #62c4ff;
 	--quaterny-color: var(--pink-6);
 	--error-color: #ff3c74;
+
+	--progress-height: 8px;
+	--progress-margin: 38px;
+	--progress-height-total: calc(var(--progress-height) + var(--progress-margin));
 	--success-color: #00d22b;
 	--progress-bar-background: #f975f7;
 	--progress-bar-fill: #00d22b;
+
 	--code-bg-color: #3f3f44;
 	--quote-color: #9ca2ab;
 	--input-style: solid;

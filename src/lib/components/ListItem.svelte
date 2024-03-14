@@ -2,12 +2,12 @@
 	import { applyAction, deserialize } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import type { RetroList } from '$lib/types';
-	import { getItemStats, validateUUID } from '$lib/util';
+	import { getListStats, validateUUID } from '$lib/util';
 	import { EditIcon, Trash2Icon } from 'svelte-feather-icons';
 
 	export let list: Partial<RetroList>;
 
-	const { done, left } = getItemStats(list);
+	const { done, left } = getListStats(list);
 
 	async function handleDelete(event: SubmitEvent) {
 		const { uuid } = list;
