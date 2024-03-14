@@ -17,6 +17,8 @@
 		"@fontsource/mr-dafoe": "^5.0.12",
 		"@fontsource/titillium-web": "^5.0.18",
 		"@prisma/client": "^5.10.2",
+		"@types/lodash-es": "^4.17.12",
+		"lodash-es": "^4.17.21",
 		"open-props": "^1.6.18"
 	},
 	"prisma": {
