@@ -1,5 +1,4 @@
 import prisma from '$lib/prisma';
-import { fail } from '@sveltejs/kit';
 
 export const load = async ({ params }) => {
 	const list = await prisma.list.findUnique({
@@ -15,32 +14,6 @@ export const load = async ({ params }) => {
 };
 
 export const actions = {
-	update: async ({ request, params }) => {
-		const data = await request.formData();
-
-		const title = data.get('title');
-		const subtitle = data.get('subtitle');
-
-		// validation
-		if (!title || !subtitle) {
-			return fail(400, { title, subtitle, missing: true });
-		}
-
-		if (typeof title !== 'string' || typeof subtitle !== 'string') {
-			return fail(400, { incorrect: true });
-		}
-
-		await prisma.list.update({
-			where: { uuid: params.uuid },
-			data: {
-				title,
-				subtitle
-			}
-		});
-
-		return { success: true };
-	},
-
 	delete: async ({ params: { uuid } }) => {
 		await prisma.list.delete({
 			where: { uuid }

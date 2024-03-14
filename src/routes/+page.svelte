@@ -1,6 +1,8 @@
 <script lang="ts">
 	import ListItem from '$lib/components/ListItem.svelte';
 	import Message from '$lib/components/Message.svelte';
+	import { subtitle, title } from '$lib/config.js';
+	import { currentSubtitle, currentTitle } from '$lib/stores.js';
 	import type { RetroList } from '$lib/types.js';
 	import { ListIcon, PlusCircleIcon } from 'svelte-feather-icons';
 
@@ -10,6 +12,9 @@
 		uuid: 'create',
 		title: 'Create new RetroList...'
 	};
+
+	$currentTitle = title;
+	$currentSubtitle = subtitle;
 </script>
 
 <nav>

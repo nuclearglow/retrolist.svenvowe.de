@@ -1,16 +1,13 @@
 <script lang="ts">
-	import * as config from '$lib/config';
-
-	export let title = config.title;
-	export let subtitle = config.subtitle;
+	import { currentSubtitle, currentTitle } from '$lib/stores';
 </script>
 
 <header>
 	<a href="/">
 		<div class="wrapper">
-			<div class="title" data-title={title}>
-				{title}
-				<div class="subtitle">{subtitle}</div>
+			<div class="title" data-title={$currentTitle}>
+				{$currentTitle}
+				<div class="subtitle">{$currentSubtitle}</div>
 			</div>
 		</div>
 	</a>
@@ -20,12 +17,30 @@
 	header {
 		grid-area: header;
 		position: fixed;
-		left: 30%;
-		transform: translateX(-30%);
+		top: 0;
+		left: 0;
+		right: 0;
+		height: var(--header-height);
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		background-color: var(--background-color);
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: var(--header-height);
+			box-shadow: 0 0 32px 16px var(--background-color);
+			clip-path: inset(0 0 -32px 0);
+			width: 100%;
+		}
+
+		z-index: 1000;
 
 		.wrapper {
 			position: relative;
-			text-align: left;
 
 			.title {
 				text-transform: uppercase;

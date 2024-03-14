@@ -61,7 +61,7 @@
 			&gt; {list.subtitle}{/if}
 		{#if done || left}
 			({#if done >= 0}{done}<span class="stats done">☑</span>{/if}
-			{#if left}{left}<span class="stats left">☒</span>{/if})
+			{#if left >= 0}{left}<span class="stats left">☒</span>{/if})
 		{/if}
 	</a>
 

@@ -4,7 +4,7 @@
 	import { UploadIcon } from 'svelte-feather-icons';
 
 	import { getEmptyItem, validateUUID } from '$lib/util';
-	import '../../styles/item.css';
+	import '../../styles/item.scss';
 
 	let item = getEmptyItem();
 
@@ -71,7 +71,7 @@
 		/>
 
 		<button type="submit" class="btn btn-small btn-primary btn-ghost">
-			<UploadIcon />
+			<UploadIcon size="16" />
 		</button>
 	</form>
 </div>
@@ -79,23 +79,18 @@
 <style lang="scss">
 	.item-create {
 		display: flex;
-		flex-wrap: nowrap;
 		justify-content: flex-end;
 		align-items: center;
-		flex-grow: 3;
 
-		padding: 10px;
+		padding: ß var(--size-2);
 
 		button {
 			border: none;
 			padding: 0 10px;
-			font-size: calc(var(--global-font-size) * 2);
 			cursor: pointer;
 		}
 
 		.amount {
-			flex-shrink: 3;
-
 			display: flex;
 			justify-content: space-around;
 			align-items: center;
@@ -103,6 +98,11 @@
 			.more {
 				color: var(--subtitle-color);
 			}
+		}
+
+		input {
+			max-width: 60%;
+			max-height: 20px;
 		}
 
 		button[type='submit'] {

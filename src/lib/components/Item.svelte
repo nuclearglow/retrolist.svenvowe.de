@@ -6,7 +6,7 @@
 
 	let editMode = false;
 
-	import '../../styles/item.css';
+	import '../../styles/item.scss';
 </script>
 
 <div class="item terminal-alert terminal-alert-primary" class:done={item.done}>

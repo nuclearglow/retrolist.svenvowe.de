@@ -22,25 +22,28 @@
 	<Footer />
 </div>
 
-<dialog id="deleteConfirmation" popover="manual"></dialog>
-
 <style lang="scss">
 	.layout {
-		height: 100vh;
+		height: 110vh;
 		/* grid container settings */
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: calc(var(--global-scale-factor) * 150px) 1fr auto;
+		grid-template-rows: var(--header-height) 1fr;
 		grid-template-areas:
 			'header'
-			'main'
-			'footer';
+			'main';
 	}
 
 	main {
+		max-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--footer-padding));
 		grid-area: main;
 		overflow-x: hidden;
-		overflow-y: auto;
-		margin: 20px 20px 0 20px;
+		overflow-y: scroll;
+		margin: var(--size-4) var(--size-4) var(--footer-height) var(--size-4);
+		padding-bottom: calc(var(--footer-height) + var(--footer-padding) * 2);
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 </style>

@@ -24,8 +24,24 @@
 
 <style lang="scss">
 	footer {
-		grid-area: footer;
-		min-height: 60px;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: var(--footer-height);
+		padding: 0 var(--size-4);
+
+		background-color: var(--background-color);
+
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: var(--footer-height);
+			box-shadow: 0 16px 32px 16px var(--background-color);
+			clip-path: inset(-32px -32px -8px 0);
+			width: 100%;
+		}
+		z-index: 1000;
 
 		&,
 		.left {
@@ -39,6 +55,7 @@
 		}
 
 		.right {
+			flex-grow: 3;
 			text-align: right;
 		}
 	}

@@ -28,7 +28,13 @@ html {
 	--global-font-size: var(--font-size-fluid-1);
 	--global-line-height: var(--font-lineheight-4);
 	--global-space: 10px;
+	--global-scale-factor: 1;
+
 	--page-width: 60em;
+	--header-height: calc(var(--global-scale-factor) * 120px);
+	--footer-height: 60px;
+	--footer-padding: var(--size-4);
+
 	--subtitle-color: #f975f7;
 	--font-color: #e8e9ed;
 	--invert-font-color: #222225;
@@ -44,7 +50,6 @@ html {
 	--quote-color: #9ca2ab;
 	--input-style: solid;
 	--display-h1-decoration: none;
-	--global-scale-factor: 1;
 }
 
 *::-moz-selection {

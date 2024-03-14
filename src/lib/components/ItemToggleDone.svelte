@@ -10,7 +10,7 @@
 		const data = new FormData(event.target as HTMLFormElement);
 		data.append('done', String(!item.done));
 
-		const response = await fetch(`/item/${item.id}?/toggleDone`, {
+		const response = await fetch(`/item/${item.uuid}?/toggleDone`, {
 			method: 'POST',
 			body: data
 		});
@@ -18,7 +18,6 @@
 		const result = deserialize(await response.text());
 
 		if (result.type === 'success') {
-			// rerun all `load` functions, following the successful update
 			await invalidateAll();
 		}
 
@@ -34,9 +33,9 @@
 		class:btn-primary={!item.done}
 	>
 		{#if item.done}
-			<CheckSquareIcon size="16" />
+			<CheckSquareIcon class="icon" size="16" />
 		{:else}
-			<SquareIcon size="16" />
+			<SquareIcon class="icon" size="16" />
 		{/if}
 	</button>
 </form>

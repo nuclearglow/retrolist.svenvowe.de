@@ -1,10 +1,20 @@
 <script lang="ts">
 	import Item from '$lib/components/Item.svelte';
 	import Message from '$lib/components/Message.svelte';
+	import { subtitle, title } from '$lib/config';
+	import { currentSubtitle, currentTitle } from '$lib/stores';
+
+	export const transitions = false;
 
 	export let data;
 
-	$: itemsNeeded = data.list?.items?.filter((item) => !item.done)?.length ?? 0;
+	let itemsNeeded = 0;
+	$: {
+		itemsNeeded = data.list?.items?.filter((item) => !item.done)?.length ?? 0;
+
+		$currentTitle = data.list?.title ?? title;
+		$currentSubtitle = data.list?.subtitle ?? subtitle;
+	}
 </script>
 
 <section>
