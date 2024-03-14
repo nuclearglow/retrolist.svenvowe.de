@@ -3,13 +3,11 @@
 	import Header from '$lib/components/Header.svelte';
 	import Transition from '$lib/components/Transition.svelte';
 	import 'open-props/buttons';
-	import 'open-props/normalize';
 	import 'open-props/style';
 
 	import '../styles/_reset.css';
 	import '../styles/animations.css';
 	import '../styles/app.scss';
-	import '../styles/forms.css';
 	import '../styles/terminal.css';
 </script>
 
@@ -23,6 +21,8 @@
 
 	<Footer />
 </div>
+
+<dialog id="deleteConfirmation" popover="manual"></dialog>
 
 <style lang="scss">
 	.layout {

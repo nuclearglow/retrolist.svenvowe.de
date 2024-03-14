@@ -1,44 +1,45 @@
-<script>
+<script lang="ts">
+	import ListItem from '$lib/components/ListItem.svelte';
 	import Message from '$lib/components/Message.svelte';
-	import { PlusCircleIcon } from 'svelte-feather-icons';
+	import type { RetroList } from '$lib/types.js';
+	import { ListIcon, PlusCircleIcon } from 'svelte-feather-icons';
 
 	export let data;
+
+	const createItem: Partial<RetroList> = {
+		uuid: 'create',
+		title: 'Create new RetroList...'
+	};
 </script>
 
 <nav>
 	<ul>
 		{#each data.lists as list (list.uuid)}
 			<li>
-				<a href="/list/{list.uuid}/">
-					<p>{list.title} {list.subtitle}</p>
-				</a>
+				<ListItem {list}>
+					<ListIcon class="icon" size="24" />
+				</ListItem>
 			</li>
 		{:else}
 			<Message message={'You have no lists yet'}></Message>
 		{/each}
-	</ul>
 
-	<a href="/list/create/">
-		<PlusCircleIcon class="icon" size="24" />
-		<p>Create new RetroList...</p>
-	</a>
+		<li>
+			<ListItem list={createItem}>
+				<PlusCircleIcon class="icon" />
+			</ListItem>
+		</li>
+	</ul>
 </nav>
 
 <style lang="scss">
-	li {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		padding: 5px 0;
-	}
+	ul {
+		li {
+			font-size: var(--font-size-1);
 
-	a {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-
-		p {
-			padding-left: 5px;
+			&:last-child {
+				color: var(--primary-color);
+			}
 		}
 	}
 </style>

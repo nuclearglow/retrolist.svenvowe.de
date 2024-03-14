@@ -1,3 +1,5 @@
+import { Prisma } from '@prisma/client';
+
 // TODO: Lucia handles this
 export type User = {
 	id: number;
@@ -8,18 +10,10 @@ export type User = {
 	password: string;
 };
 
-export type RetroList = {
-	id?: number;
-	uuid: string;
-	title: string;
-	subtitle: string;
-	items: ListItem[];
-};
+const listWithItems = Prisma.validator<Prisma.ListDefaultArgs>()({
+	include: {
+		items: true
+	}
+});
 
-export type ListItem = {
-	id?: number;
-	uuid: string;
-	title: string;
-	quantity: number;
-	done: boolean;
-};
+export type RetroList = Prisma.ListGetPayload<typeof listWithItems>;

@@ -14,7 +14,7 @@ model Item {
   quantity  Int    @default(1)
   done      Boolean @default(false)
   list_uuid String  @db.VarChar(36)
-  lists     List   @relation(fields: [list_uuid], references: [uuid], onUpdate: Restrict, map: "items_lists_FK")
+  lists     List   @relation(fields: [list_uuid], references: [uuid], onUpdate: Restrict, onDelete: Cascade, map: "items_lists_FK")
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 

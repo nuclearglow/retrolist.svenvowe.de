@@ -1,3 +1,4 @@
+import type { RetroList } from '$lib/types';
 import type { Item } from '@prisma/client';
 
 export const validateUUID = (uuid: string): boolean =>
@@ -12,3 +13,13 @@ export const getEmptyItem = (): Pick<Item, 'title' | 'quantity' | 'done'> => ({
 	quantity: 1,
 	done: false
 });
+
+export const getItemStats = (list: Partial<RetroList>) => {
+	const done = list?.items?.filter((item) => item.done)?.length ?? 0;
+	const left = list?.items?.length ?? 0 - done ?? 0;
+
+	return {
+		done,
+		left
+	};
+};

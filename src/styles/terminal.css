@@ -365,7 +365,7 @@ hr {
 }
 
 p {
-	margin: 0 0 --global-line-height;
+	margin: 0 0 var(--global-line-height);
 	color: var(--global-font-color);
 }
 
@@ -811,12 +811,6 @@ select:-webkit-autofill:focus {
 
 	pre::-webkit-scrollbar {
 		height: 3px;
-	}
-}
-
-@media screen and (max-width: 480px) {
-	form {
-		width: 100%;
 	}
 }
 
