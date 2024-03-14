@@ -1,18 +1,21 @@
 # TODO
 
 - features:
-  - add item
+
   - edit item
   - delete item
-  - delete list
+  - implement user handling with lucia (username+password), see [example](https://github.com/principle105/sveltekit-lucia-prisma-oauth), migrate everything
+  - profile info with stats
+  - imprint
+
 - finalize styles and components
 
-- implement user handling with lucia (username+password), see [example](https://github.com/principle105/sveltekit-lucia-prisma-oauth), migrate everything
+  - create list styles
+  - add item styles
+  - header subtitle font size (percent?))
 
-  - profile
-  - imprint ?!?
+- set up remote server, deployment, database and setup
 
-- set up remote server and deployment
-- implement a script that interactively creates a new user --> for us
-
-- in the background: https://codepen.io/curley/pen/zYrpVXb
+- in the background:
+  - https://codepen.io/aderaaij/pen/amqoVJ
+  - or the terminal

@@ -36,32 +36,38 @@
 	}
 
 	.progress-bar-filled {
+		position: relative;
+
 		background-color: var(--progress-bar-fill);
 		height: 100%;
 		transition: width 0.3s ease;
-		position: relative;
 		width: 0;
 	}
 
 	.progress-bar-filled::before {
 		content: '';
-		border: 6px solid transparent;
-		border-top-color: var(--progress-bar-fill);
 		position: absolute;
 		top: -12px;
 		right: -6px;
+
+		border: 6px solid transparent;
+		border-top-color: var(--progress-bar-fill);
 	}
 
 	.progress-bar-filled::after {
-		color: var(--progress-bar-fill);
-		content: attr(data-filled);
 		display: block;
-		font-size: var(--font-size-0);
-		white-space: nowrap;
+		content: attr(data-filled);
+
 		position: absolute;
-		border: 6px solid transparent;
 		top: calc(-1 * var(--progress-margin));
 		right: 0px;
+
+		color: var(--progress-bar-fill);
+		font-size: var(--font-size-0);
+		white-space: nowrap;
+
+		border: 6px solid transparent;
+
 		transform: translateX(50%);
 		transform: translateX(50%);
 	}
