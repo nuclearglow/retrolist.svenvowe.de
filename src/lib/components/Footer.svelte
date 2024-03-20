@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import BackButton from './BackButton.svelte';
-	import ItemCreate from './ItemCreate.svelte';
+	import ItemEdit from './ItemEdit.svelte';
 
 	$: listUuid =
 		$page.url.pathname.match(
@@ -15,9 +15,10 @@
 		<!-- TODO: profile-->
 		<!-- TODO: imprint-->
 	</div>
+
 	<div class="right">
 		{#if listUuid}
-			<ItemCreate {listUuid} />
+			<ItemEdit {listUuid} />
 		{/if}
 	</div>
 </footer>
@@ -56,7 +57,9 @@
 
 		.right {
 			flex-grow: 3;
+			justify-content: flex-end;
 			text-align: right;
+			white-space: nowrap;
 		}
 	}
 </style>

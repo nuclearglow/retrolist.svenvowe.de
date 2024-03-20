@@ -7,7 +7,7 @@
 
 	export let list: Partial<RetroList>;
 
-	const { done, left } = getListStats(list);
+	const { progress } = getListStats(list);
 
 	async function handleDelete(event: SubmitEvent) {
 		const { uuid } = list;
@@ -59,10 +59,7 @@
 		{list.title}
 		{#if list?.subtitle?.length}
 			&gt; {list.subtitle}{/if}
-		{#if done || left}
-			({#if done >= 0}{done}<span class="stats done">☑</span>{/if}
-			{#if left >= 0}{left}<span class="stats left">☒</span>{/if})
-		{/if}
+		({progress.toFixed(0)}%)
 	</a>
 
 	{#if list.id}
@@ -91,19 +88,6 @@
 
 		.item--content {
 			flex-grow: 3;
-
-			.stats {
-				font-size: var(--font-size-2);
-				padding-left: 2px;
-
-				&.done {
-					color: var(--success-color);
-				}
-
-				&.left {
-					color: var(--error-color);
-				}
-			}
 		}
 
 		.item--edit {

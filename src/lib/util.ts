@@ -36,3 +36,14 @@ export const getListStats = (list: Partial<RetroList>) => {
 		progress
 	};
 };
+
+export const scrollElement = (node: HTMLElement, scrollTo: 'top' | 'bottom') => {
+	const scroll = () =>
+		node.scroll({
+			top: scrollTo === 'top' ? 0 : node.scrollHeight,
+			behavior: 'smooth'
+		});
+	scroll();
+
+	return { update: scroll };
+};
