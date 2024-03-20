@@ -59,7 +59,10 @@
 		{list.title}
 		{#if list?.subtitle?.length}
 			&gt; {list.subtitle}{/if}
-		({progress.toFixed(0)}%)
+		{#if !isNaN(progress)}
+			&gt; <span class="progress" style="--progress: {progress.toFixed(0)}%"
+				>{progress.toFixed(0)}%</span
+			>{/if}
 	</a>
 
 	{#if list.id}
@@ -78,35 +81,43 @@
 	{/if}
 </div>
 
-<style lang="scss">
+<style lang="css">
 	.list-item {
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 		gap: var(--size-2);
 		padding-left: 0 0 0 var(--size-3);
+	}
 
-		.item--content {
-			flex-grow: 3;
-		}
+	.item--content {
+		flex-grow: 3;
+	}
 
-		.item--edit {
-			padding-top: 8 px;
-			color: var(--quaterny-color);
+	.progress {
+		color: color-mix(
+			in srgb,
+			var(--progress-bar-background),
+			var(--progress-bar-fill) var(--progress)
+		);
+	}
 
-			&:hover {
-				filter: brightness(133%);
-			}
-		}
+	.item--edit {
+		padding-top: 8 px;
+		color: var(--quaterny-color);
+	}
 
-		button {
-			box-shadow: none;
-			color: var(--subtitle-color);
-			outline: 0;
+	.item--edit:hover {
+		filter: brightness(133%);
+	}
 
-			&:hover {
-				filter: brightness(133%);
-			}
-		}
+	button {
+		box-shadow: none;
+		color: var(--subtitle-color);
+		outline: 0;
+	}
+
+	button:hover {
+		filter: brightness(133%);
 	}
 </style>
