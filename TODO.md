@@ -9,6 +9,7 @@
   - profile info with stats
   - add imprint (?)
   - [MySQL Events to invalidate the view on updates by anyone](https://github.com/rodrigogs/mysql-events)
+  - or: switch to PostgreSQL
 
 - finalize styles and components
 

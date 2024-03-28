@@ -47,8 +47,18 @@ sudo apt install mariadb-server
 sudo mysql_secure_installation
 ```
 
-- create database user retrolist -> grant privileges
+- create database user -> grant privileges
 - seed database
-- set up .env file
+
+```shell
+npx prisma migrate dev
+npx prisma db seed
+```
+
+## Set up production
+
+- create database user -> grant privileges
+- seed database
+- set up .env file (connection string)
 - set up pm2 ecosystem file
 - set up deployment
