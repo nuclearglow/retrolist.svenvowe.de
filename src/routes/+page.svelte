@@ -3,15 +3,9 @@
 	import Message from '$lib/components/Message.svelte';
 	import { subtitle, title } from '$lib/config.js';
 	import { currentSubtitle, currentTitle } from '$lib/stores.js';
-	import type { RetroList } from '$lib/types.js';
-	import { ListIcon, PlusCircleIcon } from 'svelte-feather-icons';
+	import { ListIcon } from 'svelte-feather-icons';
 
 	export let data;
-
-	const createItem: Partial<RetroList> = {
-		uuid: 'create',
-		title: 'Create new RetroList...'
-	};
 
 	$currentTitle = title;
 	$currentSubtitle = subtitle;
@@ -28,12 +22,6 @@
 		{:else}
 			<Message message={'You have no lists yet'}></Message>
 		{/each}
-
-		<li>
-			<ListItem list={createItem}>
-				<PlusCircleIcon class="icon" />
-			</ListItem>
-		</li>
 	</ul>
 </nav>
 

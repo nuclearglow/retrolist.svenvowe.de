@@ -57,6 +57,7 @@
 
 	<a class="item--content" href="/list/{list.uuid}/">
 		{list.title}
+
 		{#if list?.subtitle?.length}
 			&gt; {list.subtitle}{/if}
 		{#if !isNaN(progress)}

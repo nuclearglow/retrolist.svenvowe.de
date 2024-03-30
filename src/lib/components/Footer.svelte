@@ -1,12 +1,34 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
+	import type { RetroList } from '$lib/types';
+	import { isEmpty } from 'lodash-es';
+	import { PlusCircleIcon } from 'svelte-feather-icons';
 	import BackButton from './BackButton.svelte';
 	import ItemEdit from './ItemEdit.svelte';
+	import ListItem from './ListItem.svelte';
 
-	$: listUuid =
-		$page.url.pathname.match(
-			/\/list\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/
-		)?.[1] ?? '';
+	const newItem: Partial<RetroList> = {
+		uuid: 'create',
+		title: 'Create new RetroList...'
+	};
+
+	let displayMode: 'listEdit' | 'listCreate' | 'other';
+	let listUuid: string;
+
+	$: {
+		listUuid =
+			$page.url.pathname.match(
+				/\/list\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/
+			)?.[1] ?? '';
+
+		if ($page.url.pathname === '/') {
+			displayMode = 'listCreate';
+		} else if ($page.url.pathname.includes('/list/') && !isEmpty(listUuid)) {
+			displayMode = 'listEdit';
+		} else {
+			displayMode = 'other';
+		}
+	}
 </script>
 
 <footer>
@@ -17,7 +39,13 @@
 	</div>
 
 	<div class="right">
-		{#if listUuid}
+		{#if displayMode === 'listCreate'}
+			<a href="/list/create">
+				<ListItem list={newItem}>
+					<PlusCircleIcon class="icon" />
+				</ListItem>
+			</a>
+		{:else if displayMode === 'listEdit'}
 			<ItemEdit {listUuid} />
 		{/if}
 	</div>
@@ -56,8 +84,9 @@
 		}
 
 		.right {
-			flex-grow: 3;
-			justify-content: flex-end;
+			display: flex;
+			justify-content: right;
+			width: 100%;
 			text-align: right;
 			white-space: nowrap;
 		}

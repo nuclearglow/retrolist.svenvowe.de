@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const SEED_LISTS = 10;
+const SEED_LISTS = 15;
 const [SEED_ITEMS_MIN, SEED_ITEMS_MAX] = [5, 20];
 
 /**
@@ -21,17 +21,17 @@ async function main() {
 	console.log(`Seeding Database ...`);
 
 	await Promise.all(
-		Array.from({ length: SEED_LISTS }, (v, i) => i).map(async (index) => {
+		Array.from({ length: SEED_LISTS }, (v, i) => i).map(async (v, i) => {
 			const itemCount = randomBetween(SEED_ITEMS_MIN, SEED_ITEMS_MAX);
 
 			const list = await prisma.list.create({
 				data: {
 					title: `List`,
-					subtitle: `${index}`,
+					subtitle: `${i}`,
 					uuid: crypto.randomUUID(),
 					items: {
 						create: Array.from({ length: itemCount }, (v, i) => i).map((itemIndex) => ({
-							title: `Item ${itemIndex} of List ${index}`,
+							title: `Item ${itemIndex} of List ${i}`,
 							quantity: randomBetween(1, 5),
 							uuid: crypto.randomUUID()
 						}))
