@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { transitionDelay, transitionDuration } from '$lib/config';
+	import { REGEX_LIST_EDIT } from '$lib/constants';
 	import { fade } from 'svelte/transition';
 
 	let path: string;
@@ -8,7 +9,7 @@
 
 	$: {
 		path = $page.url.pathname;
-		skipTransition = path?.startsWith('/list/');
+		skipTransition = REGEX_LIST_EDIT.test(path);
 	}
 </script>
 

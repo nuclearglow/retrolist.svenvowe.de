@@ -1,3 +1,4 @@
+import { REGEX_UUID } from '$lib/constants';
 import type { RetroList } from '$lib/types';
 import type { Item } from '@prisma/client';
 import { clamp, partition } from 'lodash-es';
@@ -8,11 +9,7 @@ import { clamp, partition } from 'lodash-es';
  * @returns A boolean indicating whether the UUID is valid.
  */
 export const validateUUID = (uuid: string): boolean =>
-	!!uuid &&
-	typeof uuid === 'string' &&
-	uuid.length === 36 &&
-	uuid.match(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/) !==
-		null;
+	!!uuid && typeof uuid === 'string' && uuid.length === 36 && uuid.match(REGEX_UUID) !== null;
 
 /**
  * Returns an empty item object with the default quantity of 1

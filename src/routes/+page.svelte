@@ -29,10 +29,6 @@
 	ul {
 		li {
 			font-size: var(--font-size-1);
-
-			&:last-child {
-				color: var(--primary-color);
-			}
 		}
 	}
 </style>

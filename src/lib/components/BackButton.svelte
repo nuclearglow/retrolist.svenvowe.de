@@ -13,6 +13,13 @@
 	}
 </script>
 
-<button type="button" class="btn btn-small btn-primary btn-ghost" on:click={handleBack}>
+<button type="button" on:click={handleBack}>
 	<ArrowLeftIcon />
 </button>
+
+<style lang="scss">
+	button {
+		padding: 0;
+		color: var(--primary-color);
+	}
+</style>

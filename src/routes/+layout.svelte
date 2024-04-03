@@ -39,7 +39,7 @@
 		grid-area: main;
 		overflow-x: hidden;
 		overflow-y: scroll;
-		margin: var(--size-4) var(--size-4) var(--footer-height) var(--size-4);
+		margin: var(--size-6) var(--size-4) var(--footer-height) var(--size-4);
 
 		&::-webkit-scrollbar {
 			display: none;

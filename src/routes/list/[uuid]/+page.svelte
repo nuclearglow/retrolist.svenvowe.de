@@ -20,9 +20,11 @@
 
 <section>
 	{#if data.list}
-		<div class="title">
-			<h3>I need {itemsNeeded} more thing{itemsNeeded > 1 ? 's' : ''}:</h3>
-		</div>
+		{#if data.list.items?.length > 0}
+			<div class="title">
+				<h3>I need {itemsNeeded} more thing{itemsNeeded > 1 ? 's' : ''}:</h3>
+			</div>
+		{/if}
 
 		<div class="items">
 			{#each data.list.items as item (item.uuid)}
