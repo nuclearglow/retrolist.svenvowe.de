@@ -2,21 +2,17 @@
 	"eslint.enable": true,
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"cSpell.ignorePaths": ["**/*.md"],
-	"sqltools.connections": [
-		{
-			"mysqlOptions": {
-				"authProtocol": "default",
-				"enableSsl": "Disabled"
-			},
-			"previewLimit": 50,
-			"server": "localhost",
-			"port": 3306,
-			"driver": "MariaDB",
-			"name": "retrolist-localhost",
-			"group": "localhost",
-			"database": "retrolist",
-			"username": "retrolist",
-			"askForPassword": true
-		}
-	]
+	"less.validate": true,
+	"css.validate": true,
+	"scss.validate": true,
+	"cssvar.files": [
+		"./node_modules/open-props/open-props.min.css",
+		// if you have an alternative path to where your styles are located
+		// you can add it in this array of files
+		"./src/styles/app.scss"
+	],
+	// Do not ignore node_modules css files, which is ignored by default
+	"cssvar.ignore": [],
+	// add support for autocomplete in JS or JS like files
+	"cssvar.extensions": ["svelte", "scss", "css", "postcss", "jsx", "tsx"]
 }
