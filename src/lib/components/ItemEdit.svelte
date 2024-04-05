@@ -10,6 +10,7 @@
 
 	import { redirect } from '@sveltejs/kit';
 	import { createEventDispatcher } from 'svelte';
+
 	const dispatch = createEventDispatcher();
 
 	// invokes parent component's toggleEditMode function
@@ -49,7 +50,7 @@
 		if (result.type === 'success') {
 			await invalidate(`/list/${listUuid}/`);
 			await invalidateAll();
-			redirect(303, `/list/${listUuid}/`);
+			throw redirect(303, `/list/${listUuid}/`);
 		}
 
 		applyAction(result);

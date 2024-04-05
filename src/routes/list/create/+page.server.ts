@@ -2,7 +2,11 @@ import prisma from '$lib/prisma';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
+		if (!locals?.user?.id) {
+			throw redirect(302, '/auth/login');
+		}
+
 		const data = await request.formData();
 
 		// data
@@ -23,11 +27,12 @@ export const actions = {
 		await prisma.list.create({
 			data: {
 				uuid,
+				userId: locals.user.id,
 				title,
 				subtitle
 			}
 		});
 
-		throw redirect(303, '/');
+		throw redirect(302, '/');
 	}
 };

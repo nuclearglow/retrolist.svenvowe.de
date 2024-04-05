@@ -424,7 +424,7 @@ table tbody td:first-child {
 }
 
 legend {
-	font-size: var(--font-size-3);
+	font-size: var(--font-size-4);
 }
 
 label {
@@ -440,6 +440,7 @@ fieldset {
 label {
 	font-size: 1em;
 	color: var(--font-color);
+	font-size: var(--font-size-3);
 }
 
 input[type='email'],
@@ -762,6 +763,11 @@ select:-webkit-autofill:focus {
 .terminal-alert-primary {
 	color: var(--primary-color);
 	border-color: var(--primary-color);
+}
+
+.terminal-alert-success {
+	color: var(--success-color);
+	border-color: var(--success-color);
 }
 
 @media screen and (max-width: 960px) {

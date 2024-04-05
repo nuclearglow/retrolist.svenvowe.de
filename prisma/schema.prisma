@@ -7,27 +7,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Item {
-  id        Int     @id @default(autoincrement()) @db.MediumInt
-  uuid      String  @unique(map: "items_unique") @db.VarChar(36)
-  title     String  @db.VarChar(100)
-  quantity  Int    @default(1)
-  done      Boolean @default(false)
-  list_uuid String  @db.VarChar(36)
-  lists     List   @relation(fields: [list_uuid], references: [uuid], onUpdate: Restrict, onDelete: Cascade, map: "items_lists_FK")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+model User {
+  id        String    @id @db.VarChar(255)
+  email     String    @unique @db.VarChar(255)
+  password  String    @db.VarChar(255)
 
-  @@index([list_uuid], map: "items_lists_FK")
+  sessions  Session[]
+  lists     List[]
+}
+
+model Session {
+  id        String    @id @db.VarChar(255)
+  userId    String    @db.VarChar(100)
+  expiresAt DateTime  @default(dbgenerated("DATE_ADD(NOW(), INTERVAL 30 DAY)"))
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model List {
-  id       Int     @id @default(autoincrement()) @db.MediumInt
-  uuid     String  @unique(map: "lists_unique") @db.VarChar(36)
-  title    String  @db.VarChar(100)
-  subtitle String? @db.VarChar(100)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id       Int        @id @default(autoincrement()) @db.MediumInt
+  uuid     String     @unique(map: "lists_unique") @db.VarChar(36)
+  title    String     @db.VarChar(100)
+  subtitle String?    @db.VarChar(100)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 
   items    Item[]
+
+  userId    String    @db.VarChar(100)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Item {
+  id        Int       @id @default(autoincrement()) @db.MediumInt
+  uuid      String    @unique(map: "items_unique") @db.VarChar(36)
+  title     String    @db.VarChar(100)
+  quantity  Int       @default(1)
+  done      Boolean   @default(false)
+  list_uuid String    @db.VarChar(36)
+  lists     List      @relation(fields: [list_uuid], references: [uuid], onUpdate: Restrict, onDelete: Cascade, map: "items_lists_FK")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+
+  @@index([list_uuid], map: "items_lists_FK")
 }

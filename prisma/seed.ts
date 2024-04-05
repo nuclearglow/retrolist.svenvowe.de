@@ -1,4 +1,7 @@
 import { PrismaClient } from '@prisma/client';
+import { isUndefined } from 'lodash-es';
+import { generateId } from 'lucia';
+import { Argon2id } from 'oslo/password';
 
 const prisma = new PrismaClient();
 
@@ -20,6 +23,25 @@ const randomBetween = (start: number, end: number): number =>
 async function main() {
 	console.log(`Seeding Database ...`);
 
+	console.log(`Creating test user ...`);
+	if (isUndefined(process.env.DEMO_USER_EMAIL) || isUndefined(process.env.DEMO_USER_PASSWORD)) {
+		console.error(`Populate DEMO_USER_EMAIL and DEMO_USER_PASSWORD environment variables.`);
+		process.exit(1);
+	}
+
+	const { DEMO_USER_EMAIL: email, DEMO_USER_PASSWORD: password } = process.env;
+
+	const userId = generateId(32);
+	const passwordHash = await new Argon2id().hash(password);
+
+	await prisma.user.create({
+		data: {
+			id: userId,
+			email,
+			password: passwordHash
+		}
+	});
+
 	await Promise.all(
 		Array.from({ length: SEED_LISTS }, (v, i) => i).map(async (v, i) => {
 			const itemCount = randomBetween(SEED_ITEMS_MIN, SEED_ITEMS_MAX);
@@ -28,6 +50,7 @@ async function main() {
 				data: {
 					title: `List`,
 					subtitle: `${i}`,
+					userId,
 					uuid: crypto.randomUUID(),
 					items: {
 						create: Array.from({ length: itemCount }, (v, i) => i).map((itemIndex) => ({

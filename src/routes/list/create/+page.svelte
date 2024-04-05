@@ -6,20 +6,14 @@
 
 	export let form;
 
-	let a = 'rerender';
-
 	const handleTitleChange = (event: Event) => {
 		const target = event.target as HTMLFormElement;
 		$currentTitle = target?.value ?? title;
-
-		a = a;
 	};
 
 	const handleSubtitleChange = (event: Event) => {
 		const target = event.target as HTMLFormElement;
 		$currentSubtitle = target?.value ?? subtitle;
-
-		a = a;
 	};
 </script>
 

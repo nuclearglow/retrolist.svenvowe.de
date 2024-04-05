@@ -11,6 +11,13 @@ import { clamp, partition } from 'lodash-es';
 export const validateUUID = (uuid: string): boolean =>
 	!!uuid && typeof uuid === 'string' && uuid.length === 36 && uuid.match(REGEX_UUID) !== null;
 
+export const validateEmail = (email: string): boolean => {
+	const re =
+		// eslint-disable-next-line no-useless-escape
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(String(email).toLowerCase());
+};
+
 /**
  * Returns an empty item object with the default quantity of 1
  * @returns An object with the properties 'title', 'quantity', and 'done'.

@@ -1,5 +1,5 @@
 import prisma from '$lib/prisma';
-import { fail, redirect } from '@sveltejs/kit';
+import { fail, redirect, type Actions } from '@sveltejs/kit';
 
 export const load = async ({ params }) => {
 	const list = await prisma.list.findUnique({
@@ -14,7 +14,7 @@ export const load = async ({ params }) => {
 	return { list };
 };
 
-export const actions = {
+export const actions: Actions = {
 	update: async ({ request, params }) => {
 		const data = await request.formData();
 

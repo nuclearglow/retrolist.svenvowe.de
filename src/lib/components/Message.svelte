@@ -7,6 +7,7 @@
 	class="terminal-alert"
 	class:terminal-alert-error={type === 'error'}
 	class:terminal-alert-primary={type === 'info'}
+	class:terminal-alert-success={type === 'success'}
 >
 	{message}
 </div>

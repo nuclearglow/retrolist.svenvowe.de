@@ -1,8 +1,8 @@
 import prisma from '$lib/prisma';
-import { fail } from '@sveltejs/kit';
 import { validateUUID } from '$lib/util';
+import { fail, type Actions } from '@sveltejs/kit';
 
-export const actions = {
+export const actions: Actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();
 
