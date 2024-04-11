@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { applyAction, deserialize } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
+	import Progress from '$lib/components/Progress.svelte';
 	import type { RetroList } from '$lib/types';
 	import { getListStats, validateUUID } from '$lib/util';
 	import { EditIcon, Trash2Icon } from 'svelte-feather-icons';
@@ -59,11 +60,9 @@
 		{list.title}
 
 		{#if list?.subtitle?.length}
-			&gt; {list.subtitle}{/if}
-		{#if !isNaN(progress)}
-			&gt; <span class="progress" style="--progress: {progress.toFixed(0)}%"
-				>{progress.toFixed(0)}%</span
-			>{/if}
+			&gt; {list.subtitle}
+			&gt; <Progress {progress} />
+		{/if}
 	</a>
 
 	{#if list.id}
@@ -93,14 +92,6 @@
 
 	.item--content {
 		flex-grow: 3;
-	}
-
-	.progress {
-		color: color-mix(
-			in srgb,
-			var(--progress-bar-background),
-			var(--progress-bar-fill) var(--progress)
-		);
 	}
 
 	.item--edit {

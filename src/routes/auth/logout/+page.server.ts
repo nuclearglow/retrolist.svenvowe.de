@@ -2,7 +2,7 @@ import { lucia } from '$lib/auth';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
-	logout: async (event) => {
+	default: async (event) => {
 		if (!event.locals.session) {
 			return fail(401);
 		}
@@ -15,6 +15,6 @@ export const actions = {
 			...sessionCookie.attributes
 		});
 
-		throw redirect(302, '/login');
+		throw redirect(302, '/auth/login');
 	}
 };

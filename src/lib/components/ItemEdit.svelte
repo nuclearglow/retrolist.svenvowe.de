@@ -153,7 +153,7 @@
 
 		<button type="submit" class="btn btn-small btn-primary btn-ghost">
 			{#if createMode}
-				<UploadIcon />
+				<UploadIcon size="32" />
 			{:else}
 				<SaveIcon />
 			{/if}
@@ -166,6 +166,7 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
+		gap: var(--size-2);
 
 		button[type='button'] {
 			cursor: pointer;
@@ -176,6 +177,9 @@
 			display: flex;
 			justify-content: space-around;
 			align-items: center;
+
+			gap: var(--size-1);
+			font-size: var(--font-size-3);
 
 			.more {
 				color: var(--subtitle-color);

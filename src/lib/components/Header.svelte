@@ -32,9 +32,8 @@
 			content: '';
 			position: absolute;
 			top: var(--header-height);
-			box-shadow: 0 0 32px 16px var(--background-color);
-			clip-path: inset(0 0 -32px 0);
 			width: 100%;
+			background-color: #f008b7;
 		}
 
 		z-index: 1000;

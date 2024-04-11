@@ -3,7 +3,6 @@
 	import { page } from '$app/stores';
 	import { ArrowLeftIcon } from 'svelte-feather-icons';
 
-	// TODO: handle better returns here
 	function handleBack() {
 		if ($page.url.pathname.startsWith('/list/')) {
 			goto('/');
@@ -14,11 +13,12 @@
 </script>
 
 <button type="button" on:click={handleBack}>
-	<ArrowLeftIcon />
+	<ArrowLeftIcon size="32" />
 </button>
 
 <style lang="scss">
 	button {
+		height: 32px;
 		padding: 0;
 		color: var(--primary-color);
 	}

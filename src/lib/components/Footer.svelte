@@ -1,18 +1,19 @@
 <script lang="ts">
+	import { version } from '$app/environment';
 	import { page } from '$app/stores';
 	import type { RetroList } from '$lib/types';
 	import { isEmpty } from 'lodash-es';
-	import { PlusCircleIcon } from 'svelte-feather-icons';
+	import { PlusCircleIcon, UserIcon } from 'svelte-feather-icons';
 	import BackButton from './BackButton.svelte';
 	import ItemEdit from './ItemEdit.svelte';
 	import ListItem from './ListItem.svelte';
 
 	const newItem: Partial<RetroList> = {
 		uuid: 'create',
-		title: 'Create new RetroList...'
+		title: 'New RetroList...'
 	};
 
-	let displayMode: 'listEdit' | 'listCreate' | 'other';
+	let displayMode: 'login' | 'listEdit' | 'listCreate' | 'other';
 	let listUuid: string;
 
 	$: {
@@ -25,6 +26,8 @@
 			displayMode = 'listCreate';
 		} else if ($page.url.pathname.includes('/list/') && !isEmpty(listUuid)) {
 			displayMode = 'listEdit';
+		} else if ($page.url.pathname.includes('/auth/login')) {
+			displayMode = 'login';
 		} else {
 			displayMode = 'other';
 		}
@@ -32,23 +35,30 @@
 </script>
 
 <footer>
-	<div class="left">
-		<BackButton />
-		<!-- TODO: profile-->
-		<!-- TODO: imprint-->
-	</div>
-
-	<div class="right">
-		{#if displayMode === 'listCreate'}
-			<a href="/list/create">
-				<ListItem list={newItem}>
-					<PlusCircleIcon class="icon" />
-				</ListItem>
+	{#if displayMode !== 'login'}
+		<div class="left">
+			<BackButton />
+			<a href="/profile">
+				<UserIcon size="32" />
 			</a>
-		{:else if displayMode === 'listEdit'}
-			<ItemEdit {listUuid} />
-		{/if}
-	</div>
+		</div>
+
+		<div class="right">
+			{#if displayMode === 'listCreate'}
+				<a href="/list/create">
+					<ListItem list={newItem}>
+						<PlusCircleIcon size="32" />
+					</ListItem>
+				</a>
+			{:else if displayMode === 'listEdit'}
+				<ItemEdit {listUuid} />
+			{/if}
+		</div>
+	{:else}
+		<div class="right">
+			Retrolist {version}
+		</div>
+	{/if}
 </footer>
 
 <style lang="scss">
@@ -58,7 +68,7 @@
 		left: 0;
 		right: 0;
 		height: var(--footer-height);
-		padding: 0 var(--size-4);
+		padding: var(--size-1) var(--size-4) 0;
 
 		background-color: var(--background-color);
 
@@ -66,17 +76,17 @@
 			content: '';
 			position: absolute;
 			bottom: var(--footer-height);
-			box-shadow: 0 16px 32px 16px var(--background-color);
-			clip-path: inset(-32px -32px -8px 0);
+			box-shadow: 0 -8px 16px 8px var(--background-color);
+
 			width: 100%;
 		}
-		z-index: 1000;
 
 		&,
 		.left {
 			display: flex;
-			align-items: center;
+			align-items: safe center;
 			justify-content: flex-start;
+			gap: var(--size-2);
 		}
 
 		.left {

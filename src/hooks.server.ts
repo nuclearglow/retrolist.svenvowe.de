@@ -17,9 +17,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const { session, user } = await lucia.validateSession(sessionId);
 
-	console.log('session', session);
-	console.log('user', user);
-
 	if (session && session.fresh) {
 		const sessionCookie = lucia.createSessionCookie(session.id);
 		event.cookies.set(sessionCookie.name, sessionCookie.value, {
@@ -28,8 +25,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		});
 	}
 
-	if (!session) {
-		throw redirect(302, '/login');
+	if (!session && event.url.pathname !== '/auth/login') {
+		throw redirect(302, '/auth/login');
 	}
 
 	event.locals.user = user;

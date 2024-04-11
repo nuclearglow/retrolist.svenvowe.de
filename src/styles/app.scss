@@ -32,7 +32,7 @@ html {
 
 	--page-width: 60em;
 	--header-height: calc(var(--global-scale-factor) * 120px);
-	--footer-height: 60px;
+	--footer-height: calc(60px + var(--size-1));
 	--footer-padding: var(--size-4);
 
 	--subtitle-color: #f975f7;

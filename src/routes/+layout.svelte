@@ -25,6 +25,7 @@
 <style lang="scss">
 	.layout {
 		height: 100vh;
+
 		/* grid container settings */
 		display: grid;
 		grid-template-columns: 1fr;
@@ -43,6 +44,16 @@
 
 		&::-webkit-scrollbar {
 			display: none;
+		}
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			background-color: red;
+			z-index: -1;
 		}
 	}
 </style>
