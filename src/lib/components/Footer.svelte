@@ -24,7 +24,11 @@
 
 		if ($page.url.pathname === '/') {
 			displayMode = 'listCreate';
-		} else if ($page.url.pathname.includes('/list/') && !isEmpty(listUuid)) {
+		} else if (
+			$page.url.pathname.includes('/list/') &&
+			!isEmpty(listUuid) &&
+			!$page.url.pathname.endsWith('edit/')
+		) {
 			displayMode = 'listEdit';
 		} else if ($page.url.pathname.includes('/auth/login')) {
 			displayMode = 'login';

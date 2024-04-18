@@ -44,6 +44,8 @@ html {
 	--quaterny-color: var(--pink-6);
 	--error-color: #ff3c74;
 
+	--dialog-background: radial-gradient(circle, #1e1e1e 60%, #f975f7 90%);
+
 	--progress-height: 8px;
 	--progress-margin: 38px;
 	--progress-height-total: calc(var(--progress-height) + var(--progress-margin));
@@ -91,5 +93,50 @@ body {
 
 	p {
 		padding-left: 5px;
+	}
+}
+
+// Global Confirmation Dialog
+dialog {
+	border: 0;
+	background-color: transparent;
+
+	form {
+		aspect-ratio: 1 / 1;
+		padding: var(--size-8);
+
+		border-radius: var(--radius-round);
+
+		background: var(--dialog-background);
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: var(--size-2);
+
+		h3 {
+			color: var(--font-color);
+			padding: var(--size-2);
+
+			max-width: 80%;
+
+			text-align: center;
+			text-overflow: ellipsis;
+		}
+
+		button {
+			box-shadow: none;
+			color: var(--subtitle-color);
+			background-color: var(--gray-10);
+
+			outline: 0;
+
+			padding: var(--size-2);
+
+			&:hover {
+				filter: brightness(133%);
+			}
+		}
 	}
 }

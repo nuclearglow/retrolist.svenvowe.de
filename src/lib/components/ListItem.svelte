@@ -9,6 +9,7 @@
 	export let list: Partial<RetroList>;
 
 	const { progress } = getListStats(list);
+	const dialogId = `deleteConfirmation-${list.uuid}`;
 
 	async function handleDelete(event: SubmitEvent) {
 		const { uuid } = list;
@@ -36,21 +37,20 @@
 	}
 </script>
 
-<dialog id="deleteConfirmation" popover="manual">
+<dialog id={dialogId} popover="manual">
 	<form method="POST" action="/list/{list.uuid}?/delete" on:submit|preventDefault={handleDelete}>
+		<h3>Delete "{list.title}" ?</h3>
+
+		<button popovertarget={dialogId} popovertargetaction="hide" class="btn btn-primary btn-ghost"
+			>Yes!</button
+		>
 		<button
-			popovertarget="deleteConfirmation"
+			type="button"
+			popovertarget={dialogId}
 			popovertargetaction="hide"
-			class="btn btn-small btn-primary btn-ghost">Confirm</button
+			class="btn btn-error btn-ghost">No!</button
 		>
 	</form>
-
-	<button
-		type="button"
-		popovertarget="deleteConfirmation"
-		popovertargetaction="hide"
-		class="btn btn-small btn-error btn-ghost">Cancel</button
-	>
 </dialog>
 
 <div class="list-item">
@@ -72,7 +72,7 @@
 
 		<button
 			type="button"
-			popovertarget="deleteConfirmation"
+			popovertarget={dialogId}
 			popovertargetaction="show"
 			class="btn btn-small btn-primary btn-ghost"
 		>
@@ -81,7 +81,7 @@
 	{/if}
 </div>
 
-<style lang="css">
+<style lang="scss">
 	.list-item {
 		display: flex;
 		justify-content: flex-start;
@@ -95,21 +95,11 @@
 	}
 
 	.item--edit {
-		padding-top: 8 px;
+		padding-top: 8px;
 		color: var(--quaterny-color);
 	}
 
 	.item--edit:hover {
-		filter: brightness(133%);
-	}
-
-	button {
-		box-shadow: none;
-		color: var(--subtitle-color);
-		outline: 0;
-	}
-
-	button:hover {
 		filter: brightness(133%);
 	}
 </style>

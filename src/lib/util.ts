@@ -1,7 +1,7 @@
 import { REGEX_UUID } from '$lib/constants';
 import type { RetroList } from '$lib/types';
 import type { Item } from '@prisma/client';
-import { clamp, partition } from 'lodash-es';
+import { clamp } from 'lodash-es';
 
 /**
  * Validates a UUID string.
@@ -30,19 +30,29 @@ export const getEmptyItem = (): Pick<Item, 'title' | 'quantity' | 'done'> => ({
 
 /**
  * Calculates the statistics of a RetroList.
+ *
  * @param list - The RetroList object.
  * @returns An object containing the statistics of the RetroList.
  */
 export const getListStats = (list: Partial<RetroList>) => {
 	const items = list?.items ?? [];
-
 	const totalItems = items.length ?? 0;
 
-	const [itemsDone, itemsLeft] = partition(items, (item) => item.done) ?? [];
-	const [done, left] = [itemsDone.length, itemsLeft.length];
+	let done = 0;
+	let left = 0;
+	let quantityDone = 0;
+	let quantityLeft = 0;
 
-	const quantityDone = itemsDone.reduce((acc, item) => acc + item.quantity, 0);
-	const quantityLeft = itemsLeft.reduce((acc, item) => acc + item.quantity, 0);
+	for (const item of items) {
+		if (item.done) {
+			done++;
+			quantityDone += item.quantity;
+		} else {
+			left++;
+			quantityLeft += item.quantity;
+		}
+	}
+
 	const totalQuantity = quantityDone + quantityLeft;
 
 	/**
@@ -63,6 +73,7 @@ export const getListStats = (list: Partial<RetroList>) => {
 
 /**
  * Calculates the statistics of multiple RetroLists.
+ *
  * @param lists - An array of RetroList objects.
  * @returns An object containing the statistics of the RetroLists.
  */

@@ -92,19 +92,21 @@
 
 <dialog id="deleteConfirmation" popover="manual">
 	<form method="POST" action="/item/{item.uuid}?/delete" on:submit|preventDefault={handleDelete}>
+		<h3>Delete "{item.title}" ?</h3>
+
 		<button
 			popovertarget="deleteConfirmation"
 			popovertargetaction="hide"
 			class="btn btn-small btn-primary btn-ghost">Confirm</button
 		>
-	</form>
 
-	<button
-		type="button"
-		popovertarget="deleteConfirmation"
-		popovertargetaction="hide"
-		class="btn btn-small btn-error btn-ghost">Cancel</button
-	>
+		<button
+			type="button"
+			popovertarget="deleteConfirmation"
+			popovertargetaction="hide"
+			class="btn btn-small btn-error btn-ghost">Cancel</button
+		>
+	</form>
 </dialog>
 
 <div class="item-edit">
