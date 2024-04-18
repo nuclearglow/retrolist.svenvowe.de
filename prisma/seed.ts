@@ -48,8 +48,8 @@ async function main() {
 
 			const list = await prisma.list.create({
 				data: {
-					title: `List`,
-					subtitle: `${i}`,
+					title: `List${i}`,
+					subtitle: `Sub${i}`,
 					userId,
 					uuid: crypto.randomUUID(),
 					items: {
