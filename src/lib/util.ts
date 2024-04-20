@@ -58,7 +58,10 @@ export const getListStats = (list: Partial<RetroList>) => {
 	/**
 	 * current progress is the percentage of total quantity of all items done
 	 */
-	const progress = clamp((quantityDone * 100) / totalQuantity, 0, 100);
+	let progress = 0;
+	if (totalQuantity > 0) {
+		progress = clamp((quantityDone * 100) / totalQuantity, 0, 100);
+	}
 
 	return {
 		totalItems,

@@ -1,6 +1,12 @@
 # TODO
 
-## features
+## deployment 2.0
+
+- set up remote server, deployment, database and setup
+
+## features 2.x
+
+- PWA setup just like on the old server
 
 - switch icons from feather to unplugin
 
@@ -8,18 +14,10 @@
   - https://github.com/unplugin/unplugin-icons
   - https://icones.js.org/
 
-- style confirmation dialog for list and item delete
 - refactor css variable names
 - refactor css classes
-- [MySQL Events to invalidate the view on updates by anyone](https://github.com/rodrigogs/mysql-events)
 
-- finalize styles and components
-
-  - create list styles
-  - add item styles
-  - header subtitle font size (percent?))
-
-- set up remote server, deployment, database and setup
+- [MySQL Events to invalidate the view on updates by anyone](https://github.com/rodrigogs/mysql-events) or using server events
 
 - in the background:
   - https://codepen.io/aderaaij/pen/amqoVJ

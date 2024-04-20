@@ -51,7 +51,7 @@ sudo mysql_secure_installation
 - seed database
 
 ```shell
-npx prisma migrate dev
+npx prisma migrate
 npx prisma db seed
 ```
 
@@ -62,5 +62,6 @@ npx prisma db seed
 - set up .env file (connection string)
 - set up pm2 ecosystem file
 - set up deployment
-- set up webserver (hide register page behind hard password), enable https with certbot, set nameserver
+- set up webserver,
+- enable https with certbot, set nameserver
 - finalize seed.ts to only have a demo user with a single list and items

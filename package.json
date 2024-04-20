@@ -1,6 +1,6 @@
 {
 	"name": "retrolist.svenvowe.de",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -11,7 +11,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"prepare": "husky"
+		"prepare": "husky",
+		"deploy:remote": "./scripts/deploy.sh",
+		"deploy": "run-s build deploy:remote"
 	},
 	"prisma": {
 		"seed": "tsx prisma/seed.ts"
