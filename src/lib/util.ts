@@ -101,7 +101,10 @@ export const getTotalStats = (lists: Partial<RetroList>[]) => {
 		}
 	);
 
-	const totalProgress = clamp((quantityDone * 100) / totalQuantity, 0, 100) ?? 0;
+	let totalProgress = 0;
+	if (totalQuantity > 0) {
+		totalProgress = clamp((quantityDone * 100) / totalQuantity, 0, 100);
+	}
 
 	return {
 		totalLists,

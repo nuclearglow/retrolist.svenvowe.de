@@ -23,10 +23,12 @@ export const actions = {
 		});
 
 		if (!user) {
-			return fail(400, { error: 'Invalid credentials', email, password });
+			// TODO: change that again
+			return fail(400, { error: 'Invalid user', email, password });
 		}
 
-		const validPassword = await new Argon2id().verify(user.password, password);
+		const passwordBase64 = Buffer.from(password).toString('base64');
+		const validPassword = await new Argon2id().verify(user.password, passwordBase64);
 
 		if (!validPassword) {
 			return fail(400, { error: 'Invalid credentials', email, password });

@@ -36,6 +36,8 @@
 		<div class="form-group">
 			{#if form?.error}
 				<Message type="error" message={form?.error}></Message>
+			{:else if form?.success}
+				<Message type="success" message={form?.success}></Message>
 			{:else}
 				<br />
 			{/if}

@@ -18,21 +18,15 @@ const randomBetween = (start: number, end: number): number =>
 	Math.floor(Math.random() * (end - start + 1) + start);
 
 /**
- * Seeds the database with lists and items.
+ * Creates a user with the given email and password.
+ * @param email - The email of the user.
+ * @param password - The password of the user.
+ * @returns The ID of the created user.
  */
-async function main() {
-	console.log(`Seeding Database ...`);
-
-	console.log(`Creating test user ...`);
-	if (isUndefined(process.env.DEMO_USER_EMAIL) || isUndefined(process.env.DEMO_USER_PASSWORD)) {
-		console.error(`Populate DEMO_USER_EMAIL and DEMO_USER_PASSWORD environment variables.`);
-		process.exit(1);
-	}
-
-	const { DEMO_USER_EMAIL: email, DEMO_USER_PASSWORD: password } = process.env;
-
+const createUser = async (email: string, password: string): Promise<string> => {
 	const userId = generateId(32);
-	const passwordHash = await new Argon2id().hash(password);
+	const passwordBase64 = Buffer.from(password).toString('base64');
+	const passwordHash = await new Argon2id().hash(passwordBase64);
 
 	await prisma.user.create({
 		data: {
@@ -42,6 +36,29 @@ async function main() {
 		}
 	});
 
+	return userId;
+};
+
+/**
+ * Seeds the database with users, lists, and items.
+ */
+async function main(): Promise<void> {
+	console.log(`Seeding Database ...`);
+
+	if (isUndefined(process.env.ADMIN_USER_EMAIL) || isUndefined(process.env.ADMIN_USER_PASSWORD)) {
+		console.error(`Populate ADMIN_USER_EMAIL and ADMIN_USER_PASSWORD environment variables.`);
+		process.exit(1);
+	}
+	console.log(`Creating Admin user ${process.env.ADMIN_USER_EMAIL}`);
+	await createUser(process.env.ADMIN_USER_EMAIL, process.env.ADMIN_USER_PASSWORD);
+
+	if (isUndefined(process.env.DEMO_USER_EMAIL) || isUndefined(process.env.DEMO_USER_PASSWORD)) {
+		console.error(`Populate DEMO_USER_EMAIL and DEMO_USER_PASSWORD environment variables.`);
+		process.exit(1);
+	}
+	console.log(`Creating Demo user ${process.env.DEMO_USER_EMAIL}`);
+	const demoUserId = await createUser(process.env.DEMO_USER_EMAIL, process.env.DEMO_USER_PASSWORD);
+
 	await Promise.all(
 		Array.from({ length: SEED_LISTS }, (v, i) => i).map(async (v, i) => {
 			const itemCount = randomBetween(SEED_ITEMS_MIN, SEED_ITEMS_MAX);
@@ -50,10 +67,10 @@ async function main() {
 				data: {
 					title: `List${i}`,
 					subtitle: `Sub${i}`,
-					userId,
+					userId: demoUserId,
 					uuid: crypto.randomUUID(),
 					items: {
-						create: Array.from({ length: itemCount }, (v, i) => i).map((itemIndex) => ({
+						create: Array.from({ length: itemCount }, (_, i) => i).map((itemIndex) => ({
 							title: `Item ${itemIndex} of List ${i}`,
 							quantity: randomBetween(1, 5),
 							uuid: crypto.randomUUID()
@@ -61,9 +78,11 @@ async function main() {
 					}
 				}
 			});
+
 			console.log(`Created list ${list.id} with ${itemCount} items`);
 		})
 	);
+
 	console.log(`Seeding finished.`);
 }
 

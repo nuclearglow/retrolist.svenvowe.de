@@ -1,8 +1,17 @@
 import prisma from '$lib/prisma';
 import { validateEmail } from '$lib/util';
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import { generateId } from 'lucia';
 import { Argon2id } from 'oslo/password';
+
+export const load = async ({ locals }) => {
+	const { user } = locals;
+	const { email } = user ?? {};
+
+	if (!email || email !== process.env.ADMIN_USER_EMAIL) {
+		throw redirect(302, '/');
+	}
+};
 
 export const actions = {
 	default: async ({ request }) => {
@@ -12,7 +21,7 @@ export const actions = {
 		const email = data.get('email');
 		const password = data.get('password');
 
-		// validation
+		// validationnuclearwar!
 		if (!email || !password) {
 			return fail(400, { error: 'Required fields missing', email, password });
 		}
@@ -38,7 +47,8 @@ export const actions = {
 
 		// create new user
 		const userId = generateId(32);
-		const passwordHash = await new Argon2id().hash(password);
+		const passwordBase64 = Buffer.from(password).toString('base64');
+		const passwordHash = await new Argon2id().hash(passwordBase64);
 
 		await prisma.user.create({
 			data: {
