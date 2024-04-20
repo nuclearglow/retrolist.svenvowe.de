@@ -1,9 +1,11 @@
 import prisma from '$lib/prisma';
+import { notifyWebSocketClients } from '$lib/server/websocket.server';
+import type { WebSocketMessage } from '$lib/types';
 import { validateUUID } from '$lib/util';
 import { fail, type Actions } from '@sveltejs/kit';
 
 export const actions: Actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
 		const data = await request.formData();
 
 		// data
@@ -31,6 +33,16 @@ export const actions: Actions = {
 				list_uuid: listUuid
 			}
 		});
+
+		const { user, wss } = locals;
+
+		if (wss && user?.email) {
+			const message: WebSocketMessage = {
+				type: 'list-updated',
+				uuid: listUuid
+			};
+			notifyWebSocketClients(wss, user.email, message);
+		}
 
 		return { success: true };
 	}

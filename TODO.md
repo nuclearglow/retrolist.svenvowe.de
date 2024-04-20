@@ -6,8 +6,6 @@
 
 ## features 2.x
 
-- PWA setup just like on the old server
-
 - switch icons from feather to unplugin
 
   - https://antfu.me/posts/journey-with-icons-continues
@@ -18,6 +16,8 @@
 - refactor css classes
 
 - [MySQL Events to invalidate the view on updates by anyone](https://github.com/rodrigogs/mysql-events) or using server events
+
+- [WebSocket support to directly load changed list items](https://github.com/suhaildawood/SvelteKit-integrated-WebSocket/tree/main)
 
 - in the background:
   - https://codepen.io/aderaaij/pen/amqoVJ

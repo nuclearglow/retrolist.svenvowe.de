@@ -1,7 +1,7 @@
 import { REGEX_UUID } from '$lib/constants';
-import type { RetroList } from '$lib/types';
+import type { RetroList, WebSocketMessage } from '$lib/types';
 import type { Item } from '@prisma/client';
-import { clamp } from 'lodash-es';
+import { clamp, isString } from 'lodash-es';
 
 /**
  * Validates a UUID string.
@@ -137,3 +137,12 @@ export const scrollElement = (node: HTMLElement, scrollTo: 'top' | 'bottom') => 
 
 	return { update: scroll };
 };
+
+export const isWebSocketMessage = (payload: unknown): payload is WebSocketMessage =>
+	typeof payload === 'object' &&
+	payload !== null &&
+	'type' in payload &&
+	isString(payload.type) &&
+	'uuid' in payload &&
+	isString(payload.uuid) &&
+	validateUUID(payload.uuid);
