@@ -12,8 +12,9 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"prepare": "husky",
-		"deploy:remote": "./scripts/deploy.sh",
-		"deploy": "run-s build deploy:remote"
+		"deploy:remote": "./deployment/deploy.sh",
+		"deploy": "run-s build deploy:remote",
+		"server:start": "tsm ./prodServer.ts"
 	},
 	"prisma": {
 		"seed": "tsx prisma/seed.ts"
@@ -55,6 +56,7 @@
 		"svelte-check": "^3.4.3",
 		"svelte-feather-icons": "^4.1.0",
 		"tslib": "^2.4.1",
+		"tsm": "^2.3.0",
 		"tsx": "^4.7.1",
 		"typescript": "^5.3.3",
 		"vite": "^4.4.2"
