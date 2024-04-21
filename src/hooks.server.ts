@@ -1,6 +1,6 @@
 import { building } from '$app/environment';
 import { lucia } from '$lib/auth';
-import { WebSocketSymbol, type ExtendedGlobal } from '$lib/types';
+import { WebSocketSymbol, type ExtendedGlobal } from '$lib/websocket/types';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { isUndefined } from 'lodash-es';
 

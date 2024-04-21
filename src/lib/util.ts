@@ -1,5 +1,6 @@
 import { REGEX_UUID } from '$lib/constants';
-import type { RetroList, WebSocketMessage } from '$lib/types';
+import type { RetroList } from '$lib/types';
+import type { WebSocketMessage } from '$lib/websocket/types';
 import type { Item } from '@prisma/client';
 import { clamp, isString } from 'lodash-es';
 

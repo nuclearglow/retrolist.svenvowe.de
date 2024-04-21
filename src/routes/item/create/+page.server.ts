@@ -1,7 +1,7 @@
 import prisma from '$lib/prisma';
-import { notifyWebSocketClients } from '$lib/server/websocket.server';
-import type { WebSocketMessage } from '$lib/types';
 import { validateUUID } from '$lib/util';
+import type { WebSocketMessage } from '$lib/websocket/types';
+import { notifyWebSocketClients } from '$lib/websocket/websocket.server';
 import { fail, type Actions } from '@sveltejs/kit';
 
 export const actions: Actions = {

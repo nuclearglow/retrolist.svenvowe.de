@@ -6,8 +6,6 @@ import { WebSocketServer } from 'ws';
 import { WebSocketSymbol, type ExtendedGlobal, type ExtendedWebSocketServer } from './types';
 
 export const onHttpServerUpgrade = (req: IncomingMessage, sock: Duplex, head: Buffer) => {
-	console.log('incoming http server upgrade', req);
-
 	const pathname = req.url ? parse(req.url).pathname : null;
 	if (pathname !== '/websocket') return;
 
@@ -25,7 +23,6 @@ export const createWSSGlobalInstance = () => {
 
 	wss.on('connection', (ws) => {
 		ws.socketId = generateId(32);
-		console.log(`[wss] client connected (${ws.socketId})`);
 
 		ws.on('close', () => {
 			console.log(`[wss] client disconnected (${ws.socketId})`);

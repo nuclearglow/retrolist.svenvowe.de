@@ -1,4 +1,4 @@
-import type { ExtendedWebSocketServer, WebSocketMessage } from '$lib/types';
+import type { ExtendedWebSocketServer, WebSocketMessage } from '$lib/websocket/types';
 
 export const notifyWebSocketClients = (
 	wss: ExtendedWebSocketServer,
