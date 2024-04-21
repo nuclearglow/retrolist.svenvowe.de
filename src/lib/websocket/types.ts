@@ -21,7 +21,13 @@ export interface ExtendedWebSocketServer extends WebSocketBase.Server<typeof Ext
 	users: Record<string, Set<ExtendedWebSocket>>;
 }
 
+/**
+ * WebSocket Message types handled by the clients:
+ *
+ * list-updated will invalidate the list's url using the uuid
+ * lists-updated will invalidate /
+ */
 export type WebSocketMessage = {
-	type: 'list-updated';
+	type: 'list-updated' | 'lists-updated';
 	uuid: string;
 };

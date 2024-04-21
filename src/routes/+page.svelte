@@ -41,10 +41,13 @@
 				const message = JSON.parse(`${event.data}`);
 
 				if (isWebSocketMessage(message)) {
-					console.info(`[websocket] message ${message.type} received`);
+					console.debug(`[websocket] Message received: ${message.type}`);
 
 					if (message.type === 'list-updated') {
 						await invalidate(`/list/${message.uuid}/`);
+						await invalidateAll();
+					} else if (message.type === 'lists-updated') {
+						await invalidate('/');
 						await invalidateAll();
 					}
 				}

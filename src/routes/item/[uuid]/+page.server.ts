@@ -1,8 +1,10 @@
 import prisma from '$lib/prisma';
+import type { WebSocketMessage } from '$lib/websocket/types.js';
+import { notifyWebSocketClients } from '$lib/websocket/websocket.server.js';
 import { fail } from '@sveltejs/kit';
 
 export const actions = {
-	update: async ({ request, params }) => {
+	update: async ({ request, params, locals }) => {
 		const data = await request.formData();
 
 		const title = data.get('title');
@@ -26,18 +28,38 @@ export const actions = {
 			}
 		});
 
+		const { user, wss } = locals;
+
+		if (wss && user?.email) {
+			const message: WebSocketMessage = {
+				type: 'list-updated',
+				uuid: params.uuid
+			};
+			notifyWebSocketClients(wss, user.email, message);
+		}
+
 		return { success: true };
 	},
 
-	delete: async ({ params: { uuid } }) => {
+	delete: async ({ params, locals }) => {
 		await prisma.item.delete({
-			where: { uuid }
+			where: { uuid: params.uuid }
 		});
 
+		const { user, wss } = locals;
+
+		if (wss && user?.email) {
+			const message: WebSocketMessage = {
+				type: 'list-updated',
+				uuid: params.uuid
+			};
+			notifyWebSocketClients(wss, user.email, message);
+		}
+
 		return { success: true };
 	},
 
-	toggleDone: async ({ request, params }) => {
+	toggleDone: async ({ request, params, locals }) => {
 		const data = await request.formData();
 
 		const done = data.get('done');
@@ -57,6 +79,16 @@ export const actions = {
 				updatedAt: new Date()
 			}
 		});
+
+		const { user, wss } = locals;
+
+		if (wss && user?.email) {
+			const message: WebSocketMessage = {
+				type: 'list-updated',
+				uuid: params.uuid
+			};
+			notifyWebSocketClients(wss, user.email, message);
+		}
 
 		return { success: true };
 	}

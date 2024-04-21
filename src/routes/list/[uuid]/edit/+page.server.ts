@@ -1,4 +1,6 @@
 import prisma from '$lib/prisma';
+import type { WebSocketMessage } from '$lib/websocket/types.js';
+import { notifyWebSocketClients } from '$lib/websocket/websocket.server.js';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 
 export const load = async ({ params }) => {
@@ -15,7 +17,7 @@ export const load = async ({ params }) => {
 };
 
 export const actions: Actions = {
-	update: async ({ request, params }) => {
+	update: async ({ request, params, locals }) => {
 		const data = await request.formData();
 
 		const title = data.get('title');
@@ -37,6 +39,16 @@ export const actions: Actions = {
 				subtitle
 			}
 		});
+
+		const { user, wss } = locals;
+
+		if (wss && user?.email) {
+			const message: WebSocketMessage = {
+				type: 'lists-updated',
+				uuid: params.uuid ?? ''
+			};
+			notifyWebSocketClients(wss, user.email, message);
+		}
 
 		throw redirect(303, '/');
 	}
