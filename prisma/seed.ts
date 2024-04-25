@@ -8,12 +8,6 @@ const prisma = new PrismaClient();
 const SEED_LISTS = 15;
 const [SEED_ITEMS_MIN, SEED_ITEMS_MAX] = [5, 20];
 
-/**
- * Generates a random number between the specified range.
- * @param start - The start of the range.
- * @param end - The end of the range.
- * @returns A random number between the start and end range (inclusive).
- */
 const randomBetween = (start: number, end: number): number =>
 	Math.floor(Math.random() * (end - start + 1) + start);
 

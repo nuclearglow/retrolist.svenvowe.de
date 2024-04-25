@@ -5,6 +5,7 @@
 	import 'open-props/buttons';
 	import 'open-props/style';
 
+	import Background from '$lib/3d/components/Background.svelte';
 	import '../styles/_reset.css';
 	import '../styles/animations.css';
 	import '../styles/app.scss';
@@ -12,6 +13,7 @@
 </script>
 
 <div class="layout">
+	<Background />
 	<Header />
 	<main>
 		<Transition>

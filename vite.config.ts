@@ -3,6 +3,9 @@ import { defineConfig } from 'vite';
 import { createWSSGlobalInstance, onHttpServerUpgrade } from './src/lib/websocket/websocket';
 
 export default defineConfig({
+	ssr: {
+		noExternal: ['three']
+	},
 	plugins: [
 		sveltekit(),
 		{

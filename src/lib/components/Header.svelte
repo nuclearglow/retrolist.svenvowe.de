@@ -34,9 +34,11 @@
 			top: var(--header-height);
 			width: 100%;
 			background-color: #f008b7;
+
+			z-index: 100;
 		}
 
-		z-index: 1000;
+		z-index: 50;
 
 		.wrapper {
 			position: relative;
@@ -66,6 +68,8 @@
 				line-height: 1;
 				padding-right: calc(var(--global-scale-factor) * 20px);
 
+				z-index: 100;
+
 				&:before {
 					content: attr(data-title);
 					position: absolute;
@@ -73,7 +77,7 @@
 					top: 0;
 					padding-right: calc(var(--global-scale-factor) * 150px);
 
-					z-index: 10;
+					z-index: 100;
 
 					background-image: -webkit-linear-gradient(
 						-40deg,

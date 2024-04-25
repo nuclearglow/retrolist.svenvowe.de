@@ -147,3 +147,12 @@ export const isWebSocketMessage = (payload: unknown): payload is WebSocketMessag
 	'uuid' in payload &&
 	isString(payload.uuid) &&
 	validateUUID(payload.uuid);
+
+/**
+ * Generates a random number between the specified range.
+ * @param start - The start of the range.
+ * @param end - The end of the range.
+ * @returns A random number between the start and end range (inclusive).
+ */
+export const randomBetween = (start: number, end: number): number =>
+	Math.floor(Math.random() * (end - start + 1) + start);
