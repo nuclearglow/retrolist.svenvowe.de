@@ -42,8 +42,6 @@
 			z: randomBetween(-1000, 1000),
 			opacity: 0
 		}));
-
-		console.log(starfieldCoordinates);
 	});
 
 	useTask((delta) => {
@@ -51,8 +49,6 @@
 			...star,
 			z: star.z > 1000 ? -1000 : star.z + delta * STAR_VELOCITY * i
 		}));
-
-		console.log(starfieldCoordinates[0]);
 	});
 </script>
 
