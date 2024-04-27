@@ -2,7 +2,7 @@
 	import { invalidate, invalidateAll } from '$app/navigation';
 	import ListItem from '$lib/components/ListItem.svelte';
 	import Message from '$lib/components/Message.svelte';
-	import { subtitle, title } from '$lib/config.js';
+	import { RETROLIST_SUBTITLE, RETROLIST_TITLE } from '$lib/config.js';
 	import { currentSubtitle, currentTitle, webSocketClient } from '$lib/stores.js';
 	import { isWebSocketMessage } from '$lib/util.js';
 	import { onMount } from 'svelte';
@@ -10,8 +10,8 @@
 
 	export let data;
 
-	$currentTitle = title;
-	$currentSubtitle = subtitle;
+	$currentTitle = RETROLIST_TITLE;
+	$currentSubtitle = RETROLIST_SUBTITLE;
 
 	let webSocketEstablished: boolean;
 
@@ -74,8 +74,11 @@
 
 <style lang="scss">
 	ul {
+		margin-top: 0;
+
 		li {
 			font-size: var(--font-size-1);
+			background-color: var(--background-color-transparent);
 		}
 	}
 </style>

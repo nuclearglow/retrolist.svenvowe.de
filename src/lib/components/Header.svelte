@@ -16,29 +16,20 @@
 <style lang="scss">
 	header {
 		grid-area: header;
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
+		width: 100%;
 		height: var(--header-height);
 
 		display: flex;
 		align-items: center;
 		justify-content: center;
 
-		background-color: var(--background-color);
-
 		&::after {
 			content: '';
 			position: absolute;
-			top: var(--header-height);
+			top: 0;
 			width: 100%;
 			background-color: #f008b7;
-
-			z-index: 100;
 		}
-
-		z-index: 50;
 
 		.wrapper {
 			position: relative;
@@ -68,16 +59,12 @@
 				line-height: 1;
 				padding-right: calc(var(--global-scale-factor) * 20px);
 
-				z-index: 100;
-
 				&:before {
 					content: attr(data-title);
 					position: absolute;
 					left: 0;
 					top: 0;
 					padding-right: calc(var(--global-scale-factor) * 150px);
-
-					z-index: 100;
 
 					background-image: -webkit-linear-gradient(
 						-40deg,
@@ -125,7 +112,6 @@
 					-webkit-text-stroke: 1px #f008b7;
 					-webkit-filter: drop-shadow(1px 1px calc(var(--global-scale-factor) * 10px) #f008b7);
 					filter: drop-shadow(1px 1px calc(var(--global-scale-factor) * 10px) #f008b7);
-					z-index: 20;
 				}
 			}
 		}

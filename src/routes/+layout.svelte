@@ -13,8 +13,8 @@
 </script>
 
 <div class="layout">
-	<Background />
 	<Header />
+
 	<main>
 		<Transition>
 			<slot />
@@ -22,40 +22,39 @@
 	</main>
 
 	<Footer />
+
+	<Background />
 </div>
 
 <style lang="scss">
 	.layout {
-		height: 100vh;
+		width: 100vw;
+		height: 100dvh;
 
 		/* grid container settings */
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: var(--header-height) 1fr;
+		grid-template-rows: calc(var(--header-height) + var(--header-subtitle-height)) auto var(
+				--footer-height
+			);
 		grid-template-areas:
 			'header'
-			'main';
+			'main'
+			'footer';
+
+		background-color: transparent;
+		border: 0;
 	}
 
 	main {
-		height: 75%;
 		grid-area: main;
+
 		overflow-x: hidden;
 		overflow-y: scroll;
-		margin: var(--size-6) var(--size-4) var(--footer-height) var(--size-4);
+		padding: 0 var(--size-6);
 
 		&::-webkit-scrollbar {
 			display: none;
-		}
-
-		&:before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			background-color: red;
-			z-index: -1;
 		}
 	}
 </style>

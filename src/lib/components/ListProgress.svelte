@@ -25,7 +25,7 @@
 		right: var(--size-6);
 		bottom: var(--footer-height);
 		background-color: var(--background-color);
-		z-index: 1000;
+		z-index: var(--z-index-foreground);
 	}
 
 	.progress-bar {

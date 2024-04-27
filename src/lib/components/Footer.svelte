@@ -41,7 +41,9 @@
 <footer>
 	{#if displayMode !== 'login'}
 		<div class="left">
-			<BackButton />
+			{#if displayMode !== 'listCreate'}
+				<BackButton />
+			{/if}
 			<a href="/profile">
 				<UserIcon size="32" />
 			</a>
@@ -67,20 +69,17 @@
 
 <style lang="scss">
 	footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
+		grid-area: footer;
+		width: 100%;
 		height: var(--footer-height);
-		padding: var(--size-1) var(--size-4) 0;
 
-		background-color: var(--background-color);
+		padding: var(--size-1) var(--size-4) 0;
 
 		&::before {
 			content: '';
 			position: absolute;
 			bottom: var(--footer-height);
-			box-shadow: 0 -8px 16px 8px var(--background-color);
+			box-shadow: 0 -8px 16px 8px var(--background-color-transparent);
 
 			width: 100%;
 		}

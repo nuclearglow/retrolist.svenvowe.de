@@ -34,4 +34,7 @@
 </div>
 
 <style lang="scss">
+	.item {
+		background-color: var(--background-color-transparent);
+	}
 </style>

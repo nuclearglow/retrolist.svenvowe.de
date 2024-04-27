@@ -24,15 +24,22 @@ html {
 
 	--font-family: 'Hack', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 	--background-color: #1e1e1e;
+	--background-color-transparent: rgba(30, 30, 30, 0.66);
+	--background-brightness: 0.5;
+
 	--global-font-size: var(--font-size-fluid-1);
 	--global-line-height: var(--font-lineheight-4);
 	--global-space: 10px;
 	--global-scale-factor: 1;
 
 	--page-width: 60em;
-	--header-height: calc(var(--global-scale-factor) * 120px);
-	--footer-height: calc(60px + var(--size-1));
+
+	--header-height: calc(120px * var(--global-scale-factor));
+	--header-subtitle-height: 25px;
+
+	--footer-height: calc(60px + var(--size-2));
 	--footer-padding: var(--size-4);
 
 	--subtitle-color: #f975f7;
@@ -42,14 +49,15 @@ html {
 	--tertiary-color: #a3abba;
 	--primary-color: #62c4ff;
 	--quaterny-color: var(--pink-6);
+
 	--error-color: #ff3c74;
+	--success-color: #00d22b;
 
 	--dialog-background: radial-gradient(circle, #1e1e1e 60%, #f975f7 90%);
 
 	--progress-height: 8px;
 	--progress-margin: 38px;
 	--progress-height-total: calc(var(--progress-height) + var(--progress-margin));
-	--success-color: #00d22b;
 	--progress-bar-background: #f975f7;
 	--progress-bar-fill: #00d22b;
 
@@ -57,6 +65,11 @@ html {
 	--quote-color: #9ca2ab;
 	--input-style: solid;
 	--display-h1-decoration: none;
+
+	--z-index-background: -2;
+	--z-index-background-overlay: -1;
+	--z-index-ux: 100;
+	--z-index-foreground: 1000;
 }
 
 *::-moz-selection {
@@ -77,14 +90,7 @@ body {
 	color: var(--font-color);
 	margin: 0;
 	word-wrap: break-word;
-	height: 100vh;
-}
-
-canvas {
-	width: 100%;
-	height: 100%;
-
-	z-index: 100;
+	height: 100dvh;
 }
 
 @media screen and (max-width: 620px) {

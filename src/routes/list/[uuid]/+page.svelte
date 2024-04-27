@@ -2,8 +2,14 @@
 	import Item from '$lib/components/Item.svelte';
 	import ListProgress from '$lib/components/ListProgress.svelte';
 	import Message from '$lib/components/Message.svelte';
-	import { subtitle, title } from '$lib/config';
+	import {
+		RETROLIST_SUBTITLE,
+		RETROLIST_TITLE,
+		TRANSITION_ITEM_DURATION,
+		TRANSITION_ITEM_EASING_FUNCTION
+	} from '$lib/config';
 	import { currentSubtitle, currentTitle } from '$lib/stores';
+	import { flip } from 'svelte/animate';
 
 	export const transitions = false;
 
@@ -13,8 +19,8 @@
 	$: {
 		itemsNeeded = data.list?.items?.filter((item) => !item.done)?.length ?? 0;
 
-		$currentTitle = data.list?.title ?? title;
-		$currentSubtitle = data.list?.subtitle ?? subtitle;
+		$currentTitle = data.list?.title ?? RETROLIST_TITLE;
+		$currentSubtitle = data.list?.subtitle ?? RETROLIST_SUBTITLE;
 	}
 </script>
 
@@ -28,7 +34,15 @@
 
 		<div class="items">
 			{#each data.list.items as item (item.uuid)}
-				<Item {item} />
+				<div
+					animate:flip={{
+						duration: TRANSITION_ITEM_DURATION,
+						easing: TRANSITION_ITEM_EASING_FUNCTION
+					}}
+					class="item-wrapper"
+				>
+					<Item {item} />
+				</div>
 			{:else}
 				<Message message={'No items yet'}></Message>
 			{/each}

@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import Message from '$lib/components/Message.svelte';
-	import { subtitle, title } from '$lib/config.js';
+	import { RETROLIST_SUBTITLE, RETROLIST_TITLE } from '$lib/config.js';
 	import { currentSubtitle, currentTitle } from '$lib/stores';
 
 	export let form;
 
 	const handleTitleChange = (event: Event) => {
 		const target = event.target as HTMLFormElement;
-		$currentTitle = target?.value ?? title;
+		$currentTitle = target?.value ?? RETROLIST_TITLE;
 	};
 
 	const handleSubtitleChange = (event: Event) => {
 		const target = event.target as HTMLFormElement;
-		$currentSubtitle = target?.value ?? subtitle;
+		$currentSubtitle = target?.value ?? RETROLIST_SUBTITLE;
 	};
 </script>
 
