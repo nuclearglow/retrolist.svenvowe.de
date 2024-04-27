@@ -5,10 +5,10 @@ import { createWSSGlobalInstance, onHttpServerUpgrade } from './websocket';
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.warn('Starting RetroList production server...');
-console.warn('Filename:', __filename);
-console.warn('Dirname:', __dirname);
-console.warn('Starting script: ', path.resolve(__dirname, './index.js'));
+console.log('Starting RetroList production server...');
+console.log('Filename:', __filename);
+console.log('Dirname:', __dirname);
+console.log('Starting script: ', path.resolve(__dirname, './index.js'));
 
 createWSSGlobalInstance();
 
