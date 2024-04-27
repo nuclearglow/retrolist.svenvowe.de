@@ -14,4 +14,4 @@ rsync --archive --verbose --human-readable --delete --exclude node_modules --fil
 # install dependencies and migrate database
 ssh $REMOTE_SERVER "bash -i -c 'cd $REMOTE_PATH; npm ci --no-progress; npx prisma migrate deploy'"
 # restart deployment
-ssh $REMOTE_SERVER "bash -i -c 'cd $REMOTE_DEPLOYMENTS_PATH; pm2 restart $REMOTE_DEPLOYMENT_NAME'"
+ssh $REMOTE_SERVER "bash -i -c 'cd $REMOTE_DEPLOYMENTS_PATH; pm2 restart ecosystem.config.js --only $REMOTE_DEPLOYMENT_NAME'"
