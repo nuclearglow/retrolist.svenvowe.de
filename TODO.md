@@ -2,11 +2,11 @@
 
 ## features 2.x
 
-- starfield:
+- starfield
 
-  - transparent in front of the camera
-  - colorful
-  - comes out of fog in far distance
+  - fps counter
+  - performance
+  - try bloom with instancedmesh with sphere instances, measure performance
 
 - switch icons from feather to unplugin
 
