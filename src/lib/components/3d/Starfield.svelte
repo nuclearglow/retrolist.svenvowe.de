@@ -12,7 +12,7 @@
 		UnrealBloomPass
 	} from 'three/examples/jsm/Addons.js';
 
-	const STARS = 1000;
+	const STARS = 500;
 	const STAR_SIZE = 1;
 	const STAR_VELOCITY = 0.1;
 	const STAR_COLORS = [
