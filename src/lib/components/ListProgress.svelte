@@ -24,7 +24,7 @@
 		left: var(--size-6);
 		right: var(--size-6);
 		bottom: var(--footer-height);
-		background-color: var(--background-color);
+		background-color: transparent;
 		z-index: var(--z-index-foreground);
 	}
 
