@@ -8,3 +8,11 @@ const listWithItems = Prisma.validator<Prisma.ListDefaultArgs>()({
 });
 
 export type RetroList = Prisma.ListGetPayload<typeof listWithItems>;
+
+// 3D Extra Types
+
+export type StarCoordinate = {
+	x: number;
+	y: number;
+	z: number;
+};

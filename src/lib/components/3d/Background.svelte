@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Starfield from '$lib/3d/components/Starfield.svelte';
+	import Starfield from '$lib/components/3d/Starfield.svelte';
 	import { Canvas } from '@threlte/core';
 </script>
 

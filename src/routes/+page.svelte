@@ -78,7 +78,6 @@
 
 		li {
 			font-size: var(--font-size-1);
-			background-color: var(--background-color-transparent);
 		}
 	}
 </style>

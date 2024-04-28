@@ -1,11 +1,12 @@
 <script lang="ts">
+	import Background from '$lib/components/3d/Background.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Transition from '$lib/components/Transition.svelte';
+
 	import 'open-props/buttons';
 	import 'open-props/style';
 
-	import Background from '$lib/3d/components/Background.svelte';
 	import '../styles/_reset.css';
 	import '../styles/animations.css';
 	import '../styles/app.scss';

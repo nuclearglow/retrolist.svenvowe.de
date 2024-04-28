@@ -41,7 +41,7 @@
 				<td class="actions" colspan="2">
 					<form action="/auth/logout" method="post" use:enhance>
 						<div class="form-group">
-							<button class="btn btn-primary btn-ghost btm-small" type="submit">Logout</button>
+							<button class="btn btn-primary btm-small" type="submit">Logout</button>
 						</div>
 					</form>
 				</td>

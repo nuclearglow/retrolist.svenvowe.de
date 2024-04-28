@@ -79,7 +79,6 @@
 			content: '';
 			position: absolute;
 			bottom: var(--footer-height);
-			box-shadow: 0 -8px 16px 8px var(--background-color-transparent);
 
 			width: 100%;
 		}
@@ -93,7 +92,7 @@
 		}
 
 		.left {
-			min-width: 120px;
+			min-width: 80px;
 		}
 
 		.right {

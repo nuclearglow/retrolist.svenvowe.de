@@ -7,27 +7,15 @@
 	$: progress = getListStats(list)?.progress ?? 0;
 </script>
 
-<div class="progress">
-	<div class="progress-bar progress-bar-show-percent">
-		<div
-			class="progress-bar-filled"
-			style={`width: ${progress.toFixed(0)}%`}
-			data-filled={`${progress.toFixed(0)}%`}
-		></div>
-	</div>
+<div class="progress-bar progress-bar-show-percent">
+	<div
+		class="progress-bar-filled"
+		style={`width: ${progress.toFixed(0)}%`}
+		data-filled={`${progress.toFixed(0)}%`}
+	></div>
 </div>
 
 <style lang="scss">
-	.progress {
-		position: fixed;
-		height: var(--progress-height-total);
-		left: var(--size-6);
-		right: var(--size-6);
-		bottom: var(--footer-height);
-		background-color: transparent;
-		z-index: var(--z-index-foreground);
-	}
-
 	.progress-bar {
 		height: var(--progress-height);
 		background-color: var(--progress-bar-background);

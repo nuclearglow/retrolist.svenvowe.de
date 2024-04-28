@@ -559,6 +559,7 @@ select:-webkit-autofill:focus {
 	font-family: inherit;
 	user-select: none;
 	position: relative;
+	background-color: var(--background-color-transparent);
 	z-index: var(--z-index-ux);
 }
 
@@ -661,8 +662,8 @@ select:-webkit-autofill:focus {
 }
 
 .btn-primary {
-	color: var(--invert-font-color);
-	background-color: var(--primary-color);
+	color: var(--primary-color);
+	background-color: var(--background-color-transparent);
 	border: 1px solid var(--primary-color);
 }
 

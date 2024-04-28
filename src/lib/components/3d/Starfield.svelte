@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { StarCoordinate } from '$lib/3d/types';
+	import type { StarCoordinate } from '$lib/types';
 	import { randomBetween } from '$lib/util';
 	import { T, useRender, useTask, useThrelte } from '@threlte/core';
 
@@ -32,6 +32,10 @@
 		'violet'
 	];
 
+	const STARIFLD_BLOOM_STRENGTH = 0.66;
+	const STARIFLD_BLOOM_RADIUS = 1;
+	const STARFIELD_BLOOM_THRESHOLD = 0;
+
 	let width = 0;
 	let height = 0;
 
@@ -43,9 +47,20 @@
 
 	const setupEffectComposer = () => {
 		composer.addPass(new RenderPass(scene, camera.current));
-		composer.addPass(new UnrealBloomPass(new Vector2(width, height), 0.5, 1, 0));
+		composer.addPass(
+			new UnrealBloomPass(
+				new Vector2(width, height),
+				STARIFLD_BLOOM_STRENGTH,
+				STARIFLD_BLOOM_RADIUS,
+				STARFIELD_BLOOM_THRESHOLD
+			)
+		);
 		composer.addPass(new OutputPass());
 	};
+
+	useRender(() => {
+		composer.render();
+	});
 
 	onMount(() => {
 		width = window.innerWidth;
@@ -63,14 +78,10 @@
 	});
 
 	useTask((delta) => {
-		starfieldCoordinates = starfieldCoordinates.map((star, i) => ({
-			...star,
-			z: star.z > 1000 ? -1000 : star.z + delta * STAR_VELOCITY * i
-		}));
-	});
-
-	useRender(() => {
-		composer.render();
+		starfieldCoordinates.forEach((star, i) => {
+			star.z = star.z > 1000 ? -1000 : star.z + delta * STAR_VELOCITY * i;
+		});
+		starfieldCoordinates = starfieldCoordinates;
 	});
 </script>
 
