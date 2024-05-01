@@ -96,8 +96,8 @@
 />
 
 {#each starfieldCoordinates as star, i}
-	<T.Points position={[star.x, star.y, star.z]} scale={[STAR_SIZE, STAR_SIZE, STAR_SIZE]}>
+	<T.Mesh position={[star.x, star.y, star.z]} scale={[STAR_SIZE, STAR_SIZE, STAR_SIZE]}>
 		<T.SphereGeometry radius={5} widthSegments={32} heightSegments={32}></T.SphereGeometry>
 		<T.MeshBasicMaterial color={STAR_COLORS[i % STAR_COLORS.length]} />
-	</T.Points>
+	</T.Mesh>
 {/each}
