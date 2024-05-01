@@ -2,6 +2,8 @@
 	import type { StarCoordinate } from '$lib/types';
 	import { randomBetween } from '$lib/util';
 	import { T, useRender, useTask, useThrelte } from '@threlte/core';
+	import { Instance, InstancedMesh } from '@threlte/extras';
+	import { sample } from 'lodash-es';
 
 	import { onMount } from 'svelte';
 	import { Vector2 } from 'three';
@@ -13,8 +15,8 @@
 	} from 'three/examples/jsm/Addons.js';
 
 	const STARS = 500;
-	const STAR_SIZE = 1;
-	const STAR_VELOCITY = 0.1;
+	const STAR_SIZE = 2;
+	const STAR_VELOCITY = 0.2;
 	const STAR_COLORS = [
 		'#e9ecef',
 		'red',
@@ -95,9 +97,15 @@
 	}}
 />
 
-{#each starfieldCoordinates as star, i}
-	<T.Mesh position={[star.x, star.y, star.z]} scale={[STAR_SIZE, STAR_SIZE, STAR_SIZE]}>
-		<T.SphereGeometry radius={5} widthSegments={32} heightSegments={32}></T.SphereGeometry>
-		<T.MeshBasicMaterial color={STAR_COLORS[i % STAR_COLORS.length]} />
-	</T.Mesh>
-{/each}
+<InstancedMesh limit={STARS} range={STARS}>
+	<T.SphereGeometry radius={5} widthSegments={32} heightSegments={32}></T.SphereGeometry>
+	<T.MeshBasicMaterial />
+
+	{#each starfieldCoordinates as star}
+		<Instance
+			color={sample(STAR_COLORS)}
+			position={[star.x, star.y, star.z]}
+			scale={[STAR_SIZE, STAR_SIZE, STAR_SIZE]}
+		/>
+	{/each}
+</InstancedMesh>
