@@ -1,26 +1,26 @@
 <script lang="ts">
-	import Starfield from '$lib/components/3d/Starfield.svelte';
-	import { Canvas } from '@threlte/core';
+  import Starfield from '$lib/components/3d/Starfield.svelte';
+  import { Canvas } from '@threlte/core';
 </script>
 
 <div class="background">
-	<Canvas>
-		<Starfield />
-	</Canvas>
+  <Canvas>
+    <Starfield />
+  </Canvas>
 </div>
 
 <style lang="scss">
-	.background {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-		width: 100vw;
-		height: 100dvh;
+    width: 100vw;
+    height: 100dvh;
 
-		filter: brightness(var(--background-brightness));
-		z-index: var(--z-index-background);
-	}
+    filter: brightness(var(--background-brightness));
+    z-index: var(--z-index-background);
+  }
 </style>

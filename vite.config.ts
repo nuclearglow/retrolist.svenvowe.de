@@ -3,21 +3,21 @@ import { defineConfig } from 'vite';
 import { createWSSGlobalInstance, onHttpServerUpgrade } from './src/lib/websocket/websocket';
 
 export default defineConfig({
-	ssr: {
-		noExternal: ['three']
-	},
-	plugins: [
-		sveltekit(),
-		{
-			name: 'integratedWebsocketServer',
-			configureServer(server) {
-				createWSSGlobalInstance();
-				server.httpServer?.on('upgrade', onHttpServerUpgrade);
-			},
-			configurePreviewServer(server) {
-				createWSSGlobalInstance();
-				server.httpServer?.on('upgrade', onHttpServerUpgrade);
-			}
-		}
-	]
+  ssr: {
+    noExternal: ['three']
+  },
+  plugins: [
+    sveltekit(),
+    {
+      name: 'integratedWebsocketServer',
+      configureServer(server) {
+        createWSSGlobalInstance();
+        server.httpServer?.on('upgrade', onHttpServerUpgrade);
+      },
+      configurePreviewServer(server) {
+        createWSSGlobalInstance();
+        server.httpServer?.on('upgrade', onHttpServerUpgrade);
+      }
+    }
+  ]
 });

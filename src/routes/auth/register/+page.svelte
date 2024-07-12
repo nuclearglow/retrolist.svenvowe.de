@@ -1,50 +1,50 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import Message from '$lib/components/Message.svelte';
+  import { enhance } from '$app/forms';
+  import Message from '$lib/components/Message.svelte';
 
-	export let form;
+  export let form;
 </script>
 
 <form method="POST" use:enhance>
-	<fieldset>
-		<legend>Register</legend>
+  <fieldset>
+    <legend>Register</legend>
 
-		<div class="form-group">
-			<label for="email">Email</label>
-			<input
-				id="email"
-				name="email"
-				type="text"
-				value={form?.email ?? ''}
-				required
-				autocomplete="off"
-			/>
-		</div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="text"
+        value={form?.email ?? ''}
+        required
+        autocomplete="off"
+      />
+    </div>
 
-		<div class="form-group">
-			<label for="password">Password</label>
-			<input
-				id="password"
-				name="password"
-				type="password"
-				value={form?.password ?? ''}
-				required
-				autocomplete="off"
-			/>
-		</div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        value={form?.password ?? ''}
+        required
+        autocomplete="off"
+      />
+    </div>
 
-		<div class="form-group">
-			{#if form?.error}
-				<Message type="error" message={form?.error}></Message>
-			{:else if form?.success}
-				<Message type="success" message={form?.success}></Message>
-			{:else}
-				<br />
-			{/if}
-		</div>
+    <div class="form-group">
+      {#if form?.error}
+        <Message type="error" message={form?.error}></Message>
+      {:else if form?.success}
+        <Message type="success" message={form?.success}></Message>
+      {:else}
+        <br />
+      {/if}
+    </div>
 
-		<div class="form-group">
-			<button class="btn btn-primary btn-ghost btm-small" type="submit">Register</button>
-		</div>
-	</fieldset>
+    <div class="form-group">
+      <button class="btn btn-primary btn-ghost btm-small" type="submit">Register</button>
+    </div>
+  </fieldset>
 </form>

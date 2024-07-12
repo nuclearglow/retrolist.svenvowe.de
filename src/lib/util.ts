@@ -10,13 +10,13 @@ import { clamp, isString } from 'lodash-es';
  * @returns A boolean indicating whether the UUID is valid.
  */
 export const validateUUID = (uuid: string): boolean =>
-	!!uuid && typeof uuid === 'string' && uuid.length === 36 && uuid.match(REGEX_UUID) !== null;
+  !!uuid && typeof uuid === 'string' && uuid.length === 36 && uuid.match(REGEX_UUID) !== null;
 
 export const validateEmail = (email: string): boolean => {
-	const re =
-		// eslint-disable-next-line no-useless-escape
-		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	return re.test(String(email).toLowerCase());
+  const re =
+    // eslint-disable-next-line no-useless-escape
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 };
 
 /**
@@ -24,9 +24,9 @@ export const validateEmail = (email: string): boolean => {
  * @returns An object with the properties 'title', 'quantity', and 'done'.
  */
 export const getEmptyItem = (): Pick<Item, 'title' | 'quantity' | 'done'> => ({
-	title: '',
-	quantity: 1,
-	done: false
+  title: '',
+  quantity: 1,
+  done: false
 });
 
 /**
@@ -36,43 +36,43 @@ export const getEmptyItem = (): Pick<Item, 'title' | 'quantity' | 'done'> => ({
  * @returns An object containing the statistics of the RetroList.
  */
 export const getListStats = (list: Partial<RetroList>) => {
-	const items = list?.items ?? [];
-	const totalItems = items.length ?? 0;
+  const items = list?.items ?? [];
+  const totalItems = items.length ?? 0;
 
-	let done = 0;
-	let left = 0;
-	let quantityDone = 0;
-	let quantityLeft = 0;
+  let done = 0;
+  let left = 0;
+  let quantityDone = 0;
+  let quantityLeft = 0;
 
-	for (const item of items) {
-		if (item.done) {
-			done++;
-			quantityDone += item.quantity;
-		} else {
-			left++;
-			quantityLeft += item.quantity;
-		}
-	}
+  for (const item of items) {
+    if (item.done) {
+      done++;
+      quantityDone += item.quantity;
+    } else {
+      left++;
+      quantityLeft += item.quantity;
+    }
+  }
 
-	const totalQuantity = quantityDone + quantityLeft;
+  const totalQuantity = quantityDone + quantityLeft;
 
-	/**
-	 * current progress is the percentage of total quantity of all items done
-	 */
-	let progress = 0;
-	if (totalQuantity > 0) {
-		progress = clamp((quantityDone * 100) / totalQuantity, 0, 100);
-	}
+  /**
+   * current progress is the percentage of total quantity of all items done
+   */
+  let progress = 0;
+  if (totalQuantity > 0) {
+    progress = clamp((quantityDone * 100) / totalQuantity, 0, 100);
+  }
 
-	return {
-		totalItems,
-		done,
-		left,
-		totalQuantity,
-		quantityDone,
-		quantityLeft,
-		progress
-	};
+  return {
+    totalItems,
+    done,
+    left,
+    totalQuantity,
+    quantityDone,
+    quantityLeft,
+    progress
+  };
 };
 
 /**
@@ -82,44 +82,44 @@ export const getListStats = (list: Partial<RetroList>) => {
  * @returns An object containing the statistics of the RetroLists.
  */
 export const getTotalStats = (lists: Partial<RetroList>[]) => {
-	const stats = lists.map((list) => getListStats(list));
+  const stats = lists.map((list) => getListStats(list));
 
-	const totalLists = stats.length ?? 0;
+  const totalLists = stats.length ?? 0;
 
-	const { totalItems, done, left, totalQuantity, quantityDone, quantityLeft } = stats.reduce(
-		(acc, stat) => ({
-			totalItems: acc.totalItems + stat.totalItems,
-			done: acc.done + stat.done,
-			left: acc.left + stat.left,
-			totalQuantity: acc.totalQuantity + stat.totalQuantity,
-			quantityDone: acc.quantityDone + stat.quantityDone,
-			quantityLeft: acc.quantityLeft + stat.quantityLeft
-		}),
-		{
-			totalItems: 0,
-			done: 0,
-			left: 0,
-			totalQuantity: 0,
-			quantityDone: 0,
-			quantityLeft: 0
-		}
-	);
+  const { totalItems, done, left, totalQuantity, quantityDone, quantityLeft } = stats.reduce(
+    (acc, stat) => ({
+      totalItems: acc.totalItems + stat.totalItems,
+      done: acc.done + stat.done,
+      left: acc.left + stat.left,
+      totalQuantity: acc.totalQuantity + stat.totalQuantity,
+      quantityDone: acc.quantityDone + stat.quantityDone,
+      quantityLeft: acc.quantityLeft + stat.quantityLeft
+    }),
+    {
+      totalItems: 0,
+      done: 0,
+      left: 0,
+      totalQuantity: 0,
+      quantityDone: 0,
+      quantityLeft: 0
+    }
+  );
 
-	let totalProgress = 0;
-	if (totalQuantity > 0) {
-		totalProgress = clamp((quantityDone * 100) / totalQuantity, 0, 100);
-	}
+  let totalProgress = 0;
+  if (totalQuantity > 0) {
+    totalProgress = clamp((quantityDone * 100) / totalQuantity, 0, 100);
+  }
 
-	return {
-		totalLists,
-		totalItems,
-		done,
-		left,
-		totalQuantity,
-		quantityDone,
-		quantityLeft,
-		totalProgress
-	};
+  return {
+    totalLists,
+    totalItems,
+    done,
+    left,
+    totalQuantity,
+    quantityDone,
+    quantityLeft,
+    totalProgress
+  };
 };
 
 /**
@@ -129,24 +129,24 @@ export const getTotalStats = (lists: Partial<RetroList>[]) => {
  * @returns An object with an 'update' function that can be used to update the scroll position.
  */
 export const scrollElement = (node: HTMLElement, scrollTo: 'top' | 'bottom') => {
-	const scroll = () =>
-		node.scroll({
-			top: scrollTo === 'top' ? 0 : node.scrollHeight,
-			behavior: 'smooth'
-		});
-	scroll();
+  const scroll = () =>
+    node.scroll({
+      top: scrollTo === 'top' ? 0 : node.scrollHeight,
+      behavior: 'smooth'
+    });
+  scroll();
 
-	return { update: scroll };
+  return { update: scroll };
 };
 
 export const isWebSocketMessage = (payload: unknown): payload is WebSocketMessage =>
-	typeof payload === 'object' &&
-	payload !== null &&
-	'type' in payload &&
-	isString(payload.type) &&
-	'uuid' in payload &&
-	isString(payload.uuid) &&
-	validateUUID(payload.uuid);
+  typeof payload === 'object' &&
+  payload !== null &&
+  'type' in payload &&
+  isString(payload.type) &&
+  'uuid' in payload &&
+  isString(payload.uuid) &&
+  validateUUID(payload.uuid);
 
 /**
  * Generates a random number between the specified range.
@@ -155,4 +155,4 @@ export const isWebSocketMessage = (payload: unknown): payload is WebSocketMessag
  * @returns A random number between the start and end range (inclusive).
  */
 export const randomBetween = (start: number, end: number): number =>
-	Math.floor(Math.random() * (end - start + 1) + start);
+  Math.floor(Math.random() * (end - start + 1) + start);

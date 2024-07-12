@@ -1,61 +1,61 @@
 <script lang="ts">
-	import Background from '$lib/components/3d/Background.svelte';
-	import Footer from '$lib/components/Footer.svelte';
-	import Header from '$lib/components/Header.svelte';
-	import Transition from '$lib/components/Transition.svelte';
+  import Background from '$lib/components/3d/Background.svelte';
+  import Footer from '$lib/components/Footer.svelte';
+  import Header from '$lib/components/Header.svelte';
+  import Transition from '$lib/components/Transition.svelte';
 
-	import 'open-props/buttons';
-	import 'open-props/style';
+  import 'open-props/buttons';
+  import 'open-props/style';
 
-	import '../styles/_reset.css';
-	import '../styles/animations.css';
-	import '../styles/app.scss';
-	import '../styles/terminal.css';
+  import '../styles/_reset.css';
+  import '../styles/animations.css';
+  import '../styles/app.scss';
+  import '../styles/terminal.css';
 </script>
 
 <div class="layout">
-	<Header />
+  <Header />
 
-	<main>
-		<Transition>
-			<slot />
-		</Transition>
-	</main>
+  <main>
+    <Transition>
+      <slot />
+    </Transition>
+  </main>
 
-	<Footer />
+  <Footer />
 
-	<Background />
+  <Background />
 </div>
 
 <style lang="scss">
-	.layout {
-		width: 100vw;
-		height: 100dvh;
+  .layout {
+    width: 100vw;
+    height: 100dvh;
 
-		/* grid container settings */
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: calc(var(--header-height) + var(--header-subtitle-height)) auto var(
-				--footer-height
-			);
-		grid-template-areas:
-			'header'
-			'main'
-			'footer';
+    /* grid container settings */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: calc(var(--header-height) + var(--header-subtitle-height)) auto var(
+        --footer-height
+      );
+    grid-template-areas:
+      'header'
+      'main'
+      'footer';
 
-		background-color: transparent;
-		border: 0;
-	}
+    background-color: transparent;
+    border: 0;
+  }
 
-	main {
-		grid-area: main;
+  main {
+    grid-area: main;
 
-		overflow-x: hidden;
-		overflow-y: scroll;
-		padding: 0 var(--size-6);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0 var(--size-6);
 
-		&::-webkit-scrollbar {
-			display: none;
-		}
-	}
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 </style>

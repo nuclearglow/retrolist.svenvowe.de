@@ -1,36 +1,36 @@
 .item {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: var(--size-2);
-	padding-left: 0 0 0 var(--size-3);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--size-2);
+  padding-left: 0 0 0 var(--size-3);
 
-	&.done {
-		border-color: var(--success-color);
-	}
+  &.done {
+    border-color: var(--success-color);
+  }
 
-	.quantity {
-		color: var(--subtitle-color);
-	}
+  .quantity {
+    color: var(--subtitle-color);
+  }
 
-	.amount {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
+  .amount {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-		.more {
-			color: var(--subtitle-color);
-		}
+    .more {
+      color: var(--subtitle-color);
+    }
 
-		button {
-			border: 0;
-			padding-top: 0;
-			padding-bottom: 0;
-			font-size: calc(var(--global-font-size) * 2);
-		}
-	}
+    button {
+      border: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-size: calc(var(--global-font-size) * 2);
+    }
+  }
 
-	.title {
-		flex-grow: 2;
-	}
+  .title {
+    flex-grow: 2;
+  }
 }
