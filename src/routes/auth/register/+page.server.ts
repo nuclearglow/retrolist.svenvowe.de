@@ -21,7 +21,6 @@ export const actions = {
     const email = data.get('email');
     const password = data.get('password');
 
-    // validationnuclearwar!
     if (!email || !password) {
       return fail(400, { error: 'Required fields missing', email, password });
     }

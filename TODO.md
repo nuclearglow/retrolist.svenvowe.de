@@ -2,7 +2,9 @@
 
 ## features 2.x
 
-- make the admin register work by proving the ENV VARs on prod
+- es wäre nützlich wenn man die items per drag and drop sortieren könnte.
+- Wenn man eine neue liste erstellt hat sollte man zum homescreen geschickt werden wo man seine listen auswählen kann
+- Wenn man einen punkt auf die liste setzt kann der curser gerne auf dem eingabefeld bleiben, meist tippt man mehrere punkte auf einmal
 
 - switch icons from feather to unplugin - try out
 
