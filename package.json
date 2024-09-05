@@ -12,9 +12,12 @@
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "prepare": "husky",
+    "db:remote:backup": "./deployment/db-backup.sh",
+    "db:remote:restore": "./deployment/db-restore.sh",
     "deploy:remote": "./deployment/deploy.sh",
-    "deploy": "run-s build deploy:remote",
-    "server:start": "tsm ./prodServer.ts"
+    "deploy": "run-s db:remote:backup build deploy:remote",
+    "server:start": "tsm ./prodServer.ts",
+    "data-migration:add-order-index": "tsx ./prisma/migrations/20240905160932_item_order_index_add/data-migration.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

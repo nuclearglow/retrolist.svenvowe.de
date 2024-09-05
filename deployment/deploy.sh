@@ -1,10 +1,13 @@
 # add package.json to build folder
 cp -p package.json $LOCAL_PATH
 cp -p package-lock.json $LOCAL_PATH
+
 # add prisma folder to build folder
 cp -pR prisma $LOCAL_PATH
+
 # add server setup script to build folder
 cp -p deployment/prodServer.ts $LOCAL_PATH
+
 # copy server setup script dependencies to build folder, exlcude sveltekit serverside module
 find src/lib/websocket/ ! -name websocket.server.ts -exec cp -t $LOCAL_PATH {} +
 
@@ -13,5 +16,6 @@ rsync --archive --verbose --human-readable --delete --exclude node_modules --fil
 
 # install dependencies and migrate database
 ssh $REMOTE_SERVER "bash -i -c 'cd $REMOTE_PATH; npm ci --no-progress; npx prisma migrate deploy'"
+
 # restart deployment
 ssh $REMOTE_SERVER "bash -i -c 'cd $REMOTE_DEPLOYMENTS_PATH; pm2 delete retrolist.svenvowe.de; pm2 start ecosystem.config.js --only $REMOTE_DEPLOYMENT_NAME'"
